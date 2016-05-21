@@ -1,0 +1,46 @@
+{
+  "name": "embassy",
+  "version": "0.0.1",
+  "description": "JWT token generator/verifier with built-in permission flags",
+  "main": "src/Embassy.js",
+  "scripts": {
+    "clean": "rm -rf node_modules coverage",
+    "test": "npm run lint && npm run test-cov && npm run check-cov",
+    "mocha": "mocha",
+    "test-cov": "istanbul cover _mocha",
+    "check-cov": "istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80",
+    "lint": "eslint ./src ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechnologyAdvice/embassy.git"
+  },
+  "keywords": [
+    "JWT",
+    "token",
+    "oauth",
+    "oauth2",
+    "openid",
+    "connect",
+    "permission",
+    "permissions",
+    "flags"
+  ],
+  "author": "Tom Shawver <devteam+embassy@technologyadvice.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TechnologyAdvice/embassy/issues"
+  },
+  "homepage": "https://github.com/TechnologyAdvice/embassy#readme",
+  "dependencies": {
+    "base64-js": "^1.1.2",
+    "jsonwebtoken": "^6.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "eslint": "^2.10.1",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5"
+  }
+}
