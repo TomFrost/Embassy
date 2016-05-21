@@ -42,7 +42,7 @@ describe('Token', () => {
       inst.getClaim('iss').should.equal('test-issuer')
     })
     it('throws a TokenParseError if a bad token is passed in', () => {
-      const getInst = (...args) => () => new Token(...args)
+      const getInst = (opts) => () => new Token(opts)
       getInst({token: 'foo'}).should.throw(TokenParseError)
     })
   })
