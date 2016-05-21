@@ -288,7 +288,8 @@ class Token {
    * @returns {Promise.<Object>} Resolves with the decoded token payload on success; rejects
    * if the token fails to pass verification checks.
    */
-  verify(opts = {}) {
+  verify(opts) {
+    opts = opts || {}
     const params = {
       issuer: opts.issuer || this._opts.issuer,
       audience: opts.audience || this._opts.audience,
@@ -344,13 +345,13 @@ class Token {
     this._claims.prm = segments.join(';')
   }
 
-  _getBlob(domain, minBytes = 0) {
+  _getBlob(domain, minBytes) {
     const blob = this._blobs[domain] || []
-    while (blob.length < minBytes) blob.push(0)
+    while (blob.length < (minBytes || 0)) blob.push(0)
     return blob
   }
 
-  _getPermComponents(domain, perm, resize = false) {
+  _getPermComponents(domain, perm, resize) {
     const pc = {}
     return this._getPermIndex(domain, perm).then(idx => {
       pc.idx = idx
