@@ -8,7 +8,7 @@
     "test": "npm run lint && npm run test-cov && npm run check-cov",
     "mocha": "mocha",
     "test-cov": "istanbul cover _mocha",
-    "check-cov": "istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80",
+    "check-cov": "istanbul check-coverage --statements 88 --branches 90 --functions 95 --lines 88",
     "lint": "eslint ./src ./test"
   },
   "repository": {

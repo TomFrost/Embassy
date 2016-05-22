@@ -242,9 +242,10 @@ class Token {
    * @param {Object} [opts.header={}] A mapping of keys and values to be set in the token
    * header, additionally to what the signing process creates by default
    * @returns {Promise.<string>} Resolves with the token string. Rejects if the signing key is not valid.
-   * @throws {Error} If options.subject was not specified
+   * @throws {Error} If options.subject was not specified, or if the key ID is missing critical components
    */
   sign(kid, opts) {
+    opts = opts || {}
     if (!opts.subject && !this._claims.sub) throw new Error('A subject is required')
     if (!this._opts.keys || !this._opts.keys[kid]) throw new Error(`Key ID "${kid}" not found in key map`)
     if (!this._opts.keys[kid].priv) throw new Error(`Key ID "${kid}" requires a 'priv' property`)

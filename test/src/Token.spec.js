@@ -13,13 +13,16 @@ const fs = require('fs')
 /* globals describe, it, beforeEach, afterEach, before, after, should */
 const privKey = fs.readFileSync(path.resolve('test/keys/test.priv.pem'))
 const pubKey = fs.readFileSync(path.resolve('test/keys/test.pub.pem'))
-const testTokenStr = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6ImZvbyJ9.eyJwcm0iOiIiLCJpYXQiOjE0NjM2NTc2MDgsImV4cCI6MTQ2MzY1ODUwOCwiYXVkIjoidGVzdC1hdWRpZW5jZSIsImlzcyI6InRlc3QtaXNzdWVyIiwic3ViIjoiYmFyIn0.9EyUOLF-5gDy8FU87kbVRC3G457Z83UAw8jfG-shIsEEWGeIqhejqKuaCCj7Diy9Z8sT0nNV2HaZhE8UfTBibQ'
+const testTokenStr = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6Imdvb2RLZXkifQ.eyJhdWQiOiJ0ZXN0LWF1ZGllbmNlIiwiaXNzIjoidGVzdC1pc3N1ZXIiLCJzdWIiOiJiYXIiLCJwcm0iOiIiLCJpYXQiOjE0NjM4ODk0ODYsImV4cCI6MTQ2Mzg4OTQ5MX0.W6Ulky7iGnCp9OGtbVzm_Bdz-FOOdL_2UFuaixsPE8FBQxtByG4nBNrUOcaT6_qJ7_tHZNqFfICQM24NzqxxgQ'
 const tokenOpts = {
   domainPermissions: {
     foo: { bar: 0, baz: 1 }
   },
   keys: {
-    foo: { pub: pubKey, priv: privKey, algo: 'ES256' }
+    goodKey: { pub: pubKey, priv: privKey, algo: 'ES256' },
+    emptyKey: { },
+    privOnly: { priv: privKey },
+    corruptKey: { pub: pubKey, priv: privKey.toString().replace(/M/g, '@'), algo: 'ES256' }
   }
 }
 let inst
@@ -115,18 +118,60 @@ describe('Token', () => {
   })
   describe('signatures', () => {
     it('signs a token', () => {
-      return inst.sign('foo', { subject: 'foo' }).then(token => {
+      return inst.sign('goodKey', { subject: 'foo' }).then(token => {
         token.should.be.a.string
         token.split('.').should.have.length(3)
       })
     })
+    it('encodes permissions when signing', () => {
+      return inst.grantPermission('foo', 'bar').then(() => {
+        return inst.sign('goodKey', { subject: 'foo' })
+      }).then(token => {
+        inst = new Token(Object.assign({}, tokenOpts, { token }))
+        return inst.hasPermission('foo', 'bar').should.eventually.be.true
+      })
+    })
+    it('supports domains without permissions', () => {
+      inst.setOption('foo', 'bar', 'baz')
+      return inst.sign('goodKey', { subject: 'foo' }).then(token => {
+        inst = new Token({ token })
+        inst.getOption('foo', 'bar').should.equal('baz')
+      })
+    })
+    it('assigns the given expiration', () => {
+      return inst.sign('goodKey', { subject: 'foo', expiresIn: '1m' }).then(token => {
+        inst = new Token({ token })
+        inst.getClaim('exp').should.be.lessThan(new Date().getTime() + 61)
+      })
+    })
+    it('allows the subject to exist in a claim only', () => {
+      inst.setClaim('sub', 'foo@bar.baz')
+      return inst.sign('goodKey')
+    })
+    it('throws when there is no subject', () => {
+      return inst.sign.bind(inst, 'goodKey').should.throw(/subject is required/)
+    })
+    it('throws when the key ID is not in the key map', () => {
+      return inst.sign.bind(inst, 'noKey', { subject: 'foo' }).should.throw(/not found/)
+    })
+    it('throws when the key has no priv property', () => {
+      return inst.sign.bind(inst, 'emptyKey', { subject: 'foo' }).should.throw(/priv\b.*\bproperty/)
+    })
+    it('throws when the key has no algo property', () => {
+      return inst.sign.bind(inst, 'privOnly', { subject: 'foo' }).should.throw(/algo\b.*\bproperty/)
+    })
+    it('rejects if the key is corrupt', () => {
+      return inst.sign('corruptKey', { subject: 'foo' }).should.be.rejected
+    })
+  })
+  describe('verify', () => {
     it('verifies a token immediately after signing, using the KID', () => {
-      return inst.sign('foo', { subject: 'foo' }).then(() => {
+      return inst.sign('goodKey', { subject: 'foo' }).then(() => {
         return inst.verify()
       })
     })
     it('verifies a token immediately after signing, using a provided key', () => {
-      return inst.sign('foo', { subject: 'foo' }).then(() => {
+      return inst.sign('goodKey', { subject: 'foo' }).then(() => {
         return inst.verify({ key: pubKey })
       })
     })
@@ -136,27 +181,6 @@ describe('Token', () => {
     })
     it('fails to verify an unsigned token', () => {
       return inst.verify().should.be.rejected
-    })
-    it('encodes permissions when signing', () => {
-      return inst.grantPermission('foo', 'bar').then(() => {
-        return inst.sign('foo', { subject: 'foo' })
-      }).then(token => {
-        inst = new Token(Object.assign({}, tokenOpts, { token }))
-        return inst.hasPermission('foo', 'bar').should.eventually.be.true
-      })
-    })
-    it('supports domains without permissions', () => {
-      inst.setOption('foo', 'bar', 'baz')
-      return inst.sign('foo', { subject: 'foo' }).then(token => {
-        inst = new Token({ token })
-        inst.getOption('foo', 'bar').should.equal('baz')
-      })
-    })
-    it('assigns the given expiration', () => {
-      return inst.sign('foo', { subject: 'foo', expiresIn: '1m' }).then(token => {
-        inst = new Token({ token })
-        inst.getClaim('exp').should.be.lessThan(new Date().getTime() + 61)
-      })
     })
   })
 })
