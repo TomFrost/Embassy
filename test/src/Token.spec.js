@@ -8,6 +8,8 @@
 const Token = require('src/Token')
 const TokenParseError = require('src/errors/TokenParseError')
 const KeyNotFoundError = require('src/errors/KeyNotFoundError')
+const PermissionNotFoundError = require('src/errors/PermissionNotFoundError')
+const delay = require('delay')
 const path = require('path')
 const fs = require('fs')
 
@@ -15,10 +17,11 @@ const fs = require('fs')
 const privKey = fs.readFileSync(path.resolve('test/keys/test.priv.pem'))
 const pubKey = fs.readFileSync(path.resolve('test/keys/test.pub.pem'))
 const testTokenStr = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6Imdvb2RLZXkifQ.eyJhdWQiOiJ0ZXN0LWF1ZGllbmNlIiwiaXNzIjoidGVzdC1pc3N1ZXIiLCJzdWIiOiJiYXIiLCJwcm0iOiIiLCJpYXQiOjE0NjM4ODk0ODYsImV4cCI6MTQ2Mzg4OTQ5MX0.W6Ulky7iGnCp9OGtbVzm_Bdz-FOOdL_2UFuaixsPE8FBQxtByG4nBNrUOcaT6_qJ7_tHZNqFfICQM24NzqxxgQ'
+const domainPermissions = {
+  foo: { bar: 0, baz: 1 }
+}
 const tokenOpts = {
-  domainPermissions: {
-    foo: { bar: 0, baz: 1 }
-  },
+  domainPermissions,
   keys: {
     goodKey: { pub: pubKey, priv: privKey, algo: 'ES256' },
     emptyKey: { },
@@ -116,6 +119,62 @@ describe('Token', () => {
     })
     it('fails to grant permissions for unknown domains', () => {
       return inst.grantPermission('bar', 'bar').should.be.rejected
+    })
+    it('calls a function to refresh permissions via promise on grant', () => {
+      const refreshPermissions = () => Promise.resolve(domainPermissions)
+      inst = new Token({ refreshPermissions })
+      return inst.grantPermission('foo', 'bar')
+    })
+    it('calls a function to refresh permissions asynchronously on grant', () => {
+      const refreshPermissions = () => domainPermissions
+      inst = new Token({ refreshPermissions })
+      return inst.grantPermission('foo', 'bar')
+    })
+    it('calls a function to refresh permissions via promise on revoke', () => {
+      const refreshPermissions = () => Promise.resolve(domainPermissions)
+      inst = new Token({ refreshPermissions })
+      return inst.revokePermission('foo', 'bar')
+    })
+    it('calls a function to refresh permissions via promise on check', () => {
+      const refreshPermissions = () => Promise.resolve(domainPermissions)
+      inst = new Token({ refreshPermissions })
+      return inst.hasPermission('foo', 'bar')
+    })
+    it('stores results of last permission refresh for future calls', () => {
+      let calls = 0
+      const refreshPermissions = () => {
+        calls++
+        return domainPermissions
+      }
+      inst = new Token({ refreshPermissions })
+      return inst.hasPermission('foo', 'bar').then(() => {
+        calls.should.equal(1)
+        return inst.hasPermission('foo', 'baz')
+      }).then(() => {
+        calls.should.equal(1)
+      })
+    })
+    it('does not refresh permissions within refreshPermsAfterMs', () => {
+      let calls = 0
+      const refreshPermissions = () => {
+        if (!calls++) return domainPermissions
+        return { bar: { baz: 2 } }
+      }
+      inst = new Token({ refreshPermissions })
+      return inst.hasPermission('foo', 'bar').then(() => {
+        return inst.hasPermission('bar', 'baz').should.be.rejectedWith(PermissionNotFoundError)
+      })
+    })
+    it('refreshes permissions outside of the refreshPermsAfterMs window', () => {
+      let calls = 0
+      const refreshPermissions = () => {
+        if (!calls++) return domainPermissions
+        return { bar: { baz: 2 } }
+      }
+      inst = new Token({ refreshPermissions, refreshPermsAfterMs: 10 })
+      return inst.hasPermission('foo', 'bar')
+        .then(() =>  delay(11))
+        .then(() => inst.hasPermission('bar', 'baz'))
     })
   })
   describe('signatures', () => {

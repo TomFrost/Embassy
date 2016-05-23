@@ -18,7 +18,8 @@ const TokenParseError = require('./errors/TokenParseError')
 const optDefaults = {
   expiresInSecs: 900,
   permsLastUpdate: 0,
-  refreshPermsAfterMs: 500
+  refreshPermsAfterMs: 500,
+  domainPermissions: {}
 }
 
 class Token {
@@ -64,8 +65,8 @@ class Token {
    */
   constructor(opts) {
     this._opts = Object.assign({}, optDefaults, opts || {})
+    // Keys cannot be created in optDefaults because any added keys would be persisted to new Token instances
     this._opts.keys = this._opts.keys || {}
-    this._opts.domainPermissions = this._opts.domainPermissions || {}
     if (this._opts.token) {
       this._token = this._opts.token
       const decoded = jwt.decode(this._token, {
@@ -370,11 +371,10 @@ class Token {
       if (noRetry || !this._opts.refreshPermissions || Date.now() < updateAfter) {
         return Promise.reject(new PermissionNotFoundError(`Permission name does not exist: ${domain}.${perm}`))
       }
-      return Promise.resolve(this._opts.refreshPermissions()).then(() => {
-        return this._getPermIndex(domain, perm, true)
-      }).then(domainPermissions => {
+      return Promise.resolve(this._opts.refreshPermissions()).then(domainPermissions => {
         this._opts.permsLastUpdate = Date.now()
         this._opts.domainPermissions = domainPermissions
+        return this._getPermIndex(domain, perm, true)
       })
     }
     return Promise.resolve(map[perm])
