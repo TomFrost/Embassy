@@ -10,29 +10,23 @@ const KeyNotFoundError = require('./errors/KeyNotFoundError')
 const PermissionNotFoundError = require('./errors/PermissionNotFoundError')
 const TokenParseError = require('./errors/TokenParseError')
 
-/**
- * A mapping of options to their default values.
- * @type {Object}
- */
-const optDefaults = {
-  // Necessary to persist these objects between Token instances when none are specified in the constructor
-  domainPermissions: {},
-  keys: {}
-}
-
 class Embassy {
   /**
    * Creates a new Embassy instance.
-   * @param {Object} opts An object mapping of configuration objects. For all available options, see
+   * @param {Object} [opts] An object mapping of configuration objects. For all available options, see
    * {@link Token#constructor}.
    */
   constructor(opts) {
+    const optDefaults = {
+      keys: {},
+      domainPermissions: {}
+    }
     this._opts = Object.assign({}, optDefaults, opts || {})
   }
 
   /**
    * Creates a new Token, optionally initializing it with a set of claims.
-   * @param {Object} claims A mapping of JWT claim keys to appropriate values
+   * @param {Object} [claims] A mapping of JWT claim keys to appropriate values
    * @returns {Token} The newly created token object
    */
   createToken(claims) {
@@ -41,7 +35,7 @@ class Embassy {
 
   /**
    * Creates a Token object from a signed, base64-format token string.
-   * @param {string} token The encoded token string
+   * @param {string} [token] The encoded token string
    * @returns {Token} A token object, initiated with the data contained in the token string
    */
   parseToken(token) {

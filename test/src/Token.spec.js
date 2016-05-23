@@ -3,31 +3,30 @@
  * Copyright (c) 2016, TechnologyAdvice LLC
  */
 
+/* globals describe, it, beforeEach, afterEach, before, after, should */
 'use strict'
 
 const Token = require('src/Token')
 const TokenParseError = require('src/errors/TokenParseError')
 const KeyNotFoundError = require('src/errors/KeyNotFoundError')
 const PermissionNotFoundError = require('src/errors/PermissionNotFoundError')
+const keys = require('../keys')
 const delay = require('delay')
-const path = require('path')
-const fs = require('fs')
 
-/* globals describe, it, beforeEach, afterEach, before, after, should */
-const privKey = fs.readFileSync(path.resolve('test/keys/test.priv.pem'))
-const pubKey = fs.readFileSync(path.resolve('test/keys/test.pub.pem'))
-const testTokenStr = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6Imdvb2RLZXkifQ.eyJhdWQiOiJ0ZXN0LWF1ZGllbmNlIiwiaXNzIjoidGVzdC1pc3N1ZXIiLCJzdWIiOiJiYXIiLCJwcm0iOiIiLCJpYXQiOjE0NjM4ODk0ODYsImV4cCI6MTQ2Mzg4OTQ5MX0.W6Ulky7iGnCp9OGtbVzm_Bdz-FOOdL_2UFuaixsPE8FBQxtByG4nBNrUOcaT6_qJ7_tHZNqFfICQM24NzqxxgQ'
+const testTokenStr = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6Imdvb2RLZXkifQ.eyJhdWQiOiJ0ZXN0LWF1ZGllbmNlIiwiaXN' +
+  'zIjoidGVzdC1pc3N1ZXIiLCJzdWIiOiJiYXIiLCJwcm0iOiIiLCJpYXQiOjE0NjM4ODk0ODYsImV4cCI6MTQ2Mzg4OTQ5MX0.W6Ulky7iGnCp9OGt' +
+  'bVzm_Bdz-FOOdL_2UFuaixsPE8FBQxtByG4nBNrUOcaT6_qJ7_tHZNqFfICQM24NzqxxgQ'
 const domainPermissions = {
   foo: { bar: 0, baz: 1 }
 }
 const tokenOpts = {
   domainPermissions,
   keys: {
-    goodKey: { pub: pubKey, priv: privKey, algo: 'ES256' },
+    goodKey: { pub: keys.pub, priv: keys.priv, algo: 'ES256' },
     emptyKey: { },
-    privOnly: { priv: privKey },
-    privAlgo: { priv: privKey, algo: 'ES256' },
-    corruptKey: { pub: pubKey, priv: privKey.toString().replace(/M/g, '@'), algo: 'ES256' }
+    privOnly: { priv: keys.priv },
+    privAlgo: { priv: keys.priv, algo: 'ES256' },
+    corruptKey: { pub: keys.pub, priv: keys.priv.toString().replace(/M/g, '@'), algo: 'ES256' }
   }
 }
 let inst
@@ -233,7 +232,7 @@ describe('Token', () => {
     })
     it('verifies a token immediately after signing, using a provided key', () => {
       return inst.sign('goodKey', { subject: 'foo' }).then(() => {
-        return inst.verify({ key: pubKey })
+        return inst.verify({ key: keys.pub })
       })
     })
     it('verifies a token passed to the constructor', () => {
@@ -249,7 +248,7 @@ describe('Token', () => {
     })
     it('calls function to get pub key via Promise', () => {
       const getPubKey = (kid) => {
-        if (kid === 'goodKey') return Promise.resolve(pubKey)
+        if (kid === 'goodKey') return Promise.resolve(keys.pub)
         return Promise.reject(new Error('Bad KID'))
       }
       return inst.sign('goodKey', { subject: 'foo' }).then((token) => {
@@ -259,7 +258,7 @@ describe('Token', () => {
     })
     it('calls function to get pub key synchronously', () => {
       const getPubKey = (kid) => {
-        if (kid === 'goodKey') return pubKey
+        if (kid === 'goodKey') return keys.pub
         throw new Error('Bad KID')
       }
       return inst.sign('goodKey', { subject: 'foo' }).then((token) => {
@@ -269,7 +268,7 @@ describe('Token', () => {
     })
     it('gets pub key when priv key already exists', () => {
       const getPubKey = (kid) => {
-        if (kid === 'privAlgo') return pubKey
+        if (kid === 'privAlgo') return keys.pub
         throw new Error('Bad KID')
       }
       return inst.sign('privAlgo', { subject: 'foo' }).then((token) => {

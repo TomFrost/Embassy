@@ -15,12 +15,7 @@ const TokenParseError = require('./errors/TokenParseError')
  * A mapping of options to their default values.
  * @type {Object}
  */
-const optDefaults = {
-  expiresInSecs: 900,
-  permsLastUpdate: 0,
-  refreshPermsAfterMs: 500,
-  domainPermissions: {}
-}
+
 
 class Token {
   /**
@@ -64,9 +59,14 @@ class Token {
    * @throws {TokenParseError} if the provided token cannot be parsed
    */
   constructor(opts) {
+    const optDefaults = {
+      expiresInSecs: 900,
+      permsLastUpdate: 0,
+      refreshPermsAfterMs: 500,
+      keys: {},
+      domainPermissions: {}
+    }
     this._opts = Object.assign({}, optDefaults, opts || {})
-    // Keys cannot be created in optDefaults because any added keys would be persisted to new Token instances
-    this._opts.keys = this._opts.keys || {}
     if (this._opts.token) {
       this._token = this._opts.token
       const decoded = jwt.decode(this._token, {
@@ -231,11 +231,12 @@ class Token {
    * JWT token string.
    * @param {string} kid An identifier for the key pair used to sign this token. The key pair must exist in the
    * `keys` map passed in the constructor options.
-   * @param {Object} opts A mapping of settings for this signature
+   * @param {Object} [opts] A mapping of settings for this signature
    * @param {string} [opts.expiresInSecs=900] The amount of time in seconds, starting from now, that this
    * token should remain valid
    * @param {string} [opts.audience] A string representing the intended audience for this token
-   * @param {string} opts.subject The ID of the intended user of this token
+   * @param {string} [opts.subject] The ID of the intended user of this token. Optional only if a 'sub' claim has
+   * already been set.
    * @param {string} [opts.issuer] A string representing the issuer of this token
    * @param {string} [opts.noTimestamp=false] If true, this method will not generate an 'iat'
    * claim (an issued-at timestamp)
@@ -373,7 +374,7 @@ class Token {
       }
       return Promise.resolve(this._opts.refreshPermissions()).then(domainPermissions => {
         this._opts.permsLastUpdate = Date.now()
-        this._opts.domainPermissions = domainPermissions
+        Object.assign(this._opts.domainPermissions, domainPermissions)
         return this._getPermIndex(domain, perm, true)
       })
     }
