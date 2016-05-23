@@ -7,6 +7,7 @@
 
 const Token = require('src/Token')
 const TokenParseError = require('src/errors/TokenParseError')
+const KeyNotFoundError = require('src/errors/KeyNotFoundError')
 const path = require('path')
 const fs = require('fs')
 
@@ -22,6 +23,7 @@ const tokenOpts = {
     goodKey: { pub: pubKey, priv: privKey, algo: 'ES256' },
     emptyKey: { },
     privOnly: { priv: privKey },
+    privAlgo: { priv: privKey, algo: 'ES256' },
     corruptKey: { pub: pubKey, priv: privKey.toString().replace(/M/g, '@'), algo: 'ES256' }
   }
 }
@@ -181,6 +183,46 @@ describe('Token', () => {
     })
     it('fails to verify an unsigned token', () => {
       return inst.verify().should.be.rejected
+    })
+    it('fails validation using maxAgeSecs', () => {
+      inst = new Token(Object.assign({ token: testTokenStr }, tokenOpts))
+      return inst.verify({ ignoreExpiration: true, maxAgeSecs: 10 }).should.be.rejected
+    })
+    it('calls function to get pub key via Promise', () => {
+      const getPubKey = (kid) => {
+        if (kid === 'goodKey') return Promise.resolve(pubKey)
+        return Promise.reject(new Error('Bad KID'))
+      }
+      return inst.sign('goodKey', { subject: 'foo' }).then((token) => {
+        inst = new Token({ token, getPubKey })
+        return inst.verify()
+      })
+    })
+    it('calls function to get pub key synchronously', () => {
+      const getPubKey = (kid) => {
+        if (kid === 'goodKey') return pubKey
+        throw new Error('Bad KID')
+      }
+      return inst.sign('goodKey', { subject: 'foo' }).then((token) => {
+        inst = new Token({ token, getPubKey })
+        return inst.verify()
+      })
+    })
+    it('gets pub key when priv key already exists', () => {
+      const getPubKey = (kid) => {
+        if (kid === 'privAlgo') return pubKey
+        throw new Error('Bad KID')
+      }
+      return inst.sign('privAlgo', { subject: 'foo' }).then((token) => {
+        inst = new Token(Object.assign({}, tokenOpts, { token, getPubKey }))
+        return inst.verify()
+      })
+    })
+    it('rejects with KeyNotFoundError when no pub key exists', () => {
+      return inst.sign('goodKey', { subject: 'foo' }).then((token) => {
+        inst = new Token({ token })
+        return inst.verify().should.be.rejectedWith(KeyNotFoundError)
+      })
     })
   })
 })

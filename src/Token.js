@@ -18,12 +18,9 @@ const TokenParseError = require('./errors/TokenParseError')
 const optDefaults = {
   expiresInSecs: 900,
   permsLastUpdate: 0,
-  refreshPermsAfterMs: 500,
-  domainPermissions: {},
-  keys: {}
+  refreshPermsAfterMs: 500
 }
 
-// Todo: Find a way to persist domainPermissions (and permLastUpdate?) back to embassy
 class Token {
   /**
    * Creates a new Token.
@@ -67,6 +64,8 @@ class Token {
    */
   constructor(opts) {
     this._opts = Object.assign({}, optDefaults, opts || {})
+    this._opts.keys = this._opts.keys || {}
+    this._opts.domainPermissions = this._opts.domainPermissions || {}
     if (this._opts.token) {
       this._token = this._opts.token
       const decoded = jwt.decode(this._token, {
@@ -274,7 +273,7 @@ class Token {
 
   /**
    * Verifies a token's validity by checking its signature, expiration time, and contents.
-   * @param {Object} opts A mapping of options to customize the verification process
+   * @param {Object} [opts] A mapping of options to customize the verification process
    * @param {Array<string>} [opts.algorithms] List of strings with the names of the allowed
    * algorithms. For instance, ["HS256", "HS384"]. Allows all algorithms if omitted.
    * @param {string} [opts.audience] Ensures the token's audience string matches this value
@@ -282,7 +281,7 @@ class Token {
    * matches this value
    * @param {boolean} [opts.ignoreExpiration=false] If true, expired tokens will pass
    * verification checks
-   * @param {string} [opts.maxAgeSecs] If specified, will fail verification if the token is older
+   * @param {number} [opts.maxAgeSecs] If specified, will fail verification if the token is older
    * that the specified number of seconds
    * @params {string|Buffer} [opts.key] The PEM-encoded public key to be used to verify the
    * token's signature. If specified, the key ID will be ignored.
@@ -306,7 +305,7 @@ class Token {
         return this._opts.keys[this._header.kid].pub
       }
       if (this._opts.getPubKey) {
-        return this._opts.getPubKey(this._header.kid).then(pubKey => {
+        return Promise.resolve(this._opts.getPubKey(this._header.kid)).then(pubKey => {
           if (!this._opts.keys[this._header.kid]) this._opts.keys[this._header.kid] = {}
           this._opts.keys[this._header.kid].pub = pubKey
           return pubKey
