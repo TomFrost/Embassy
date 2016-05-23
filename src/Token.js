@@ -326,7 +326,6 @@ class Token {
 
   _decodeBlobs() {
     if (this._claims.prm) {
-      // TODO: Make this less permissive of syntax issues
       const segments = this._claims.prm.split(/[;:]/)
       for (let i = 0; i < segments.length; i += 2) {
         this._blobs[segments[i]] = base64.toByteArray(segments[i + 1])
