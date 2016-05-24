@@ -1,5 +1,5 @@
 # Embassy [![Build Status](https://travis-ci.org/TechnologyAdvice/Embassy.svg?branch=master)](https://travis-ci.org/TechnologyAdvice/Embassy) [![Test Coverage](https://codeclimate.com/github/TechnologyAdvice/Embassy/badges/coverage.svg)](https://codeclimate.com/github/TechnologyAdvice/Embassy/coverage)
-Generate and verify Javascript Web Tokens that contain microservice permissions and settings
+Generate and verify Javascript Web Tokens, containing dynamic microservice permissions and settings.
 
 ## Use cases
 
