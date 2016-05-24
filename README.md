@@ -10,7 +10,14 @@ While Embassy can be used to provide tokens for an OAuth or OpenID Connect flow,
 - Allow users to authenticate with that service via your favorite secure method
 - Provide the user with an Embassy token. Set the user's permissions for each individual microservice. Set any applicable per-microservice options as well. Options are non-boolean values that get stored in the token.
 - Implement Embassy in all your microservices. On each request to a privileged endpoint, validate the token. If it's valid, check it for the permissions or options that endpoint requires. Use identifying information in the token's claims for your log messages.
+- Implement Embassy in any frontends that need to know what permissions an authenticated user has in order to streamline their experience. Embassy was designed with frontend builds in mind!
 - Bask in the knowledge that your user service can go completely dead without interrupting the service of your logged-in users, or compromising your security.
+
+## Installation
+
+```
+npm install --save embassy
+```
 
 ## Example
 
