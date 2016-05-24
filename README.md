@@ -8,7 +8,7 @@ While Embassy can be used to provide tokens for an OAuth or OpenID Connect flow,
 - In each of your microservices, define an array of boolean permissions such as canEditUsers in your users service, or canUploadFiles, canDeleteFiles in your hypothetical file management service.
 - Implement a user management service that assigns permissions to users in any manner
 - Allow users to authenticate with that service via your favorite secure method
-- Provide the user with an Embassy token. Set the user's permissions for each individual microservice. Set any applicable per-microservice options as well. Options are non-boolean values that get stored in the token.
+- Provide the user with an Embassy token, setting the user's permissions and options for each individual microservice. Options are non-boolean values that get stored in the token.
 - Implement Embassy in all your microservices. On each request to a privileged endpoint, validate the token. If it's valid, check it for the permissions or options that endpoint requires. Use identifying information in the token's claims for your log messages.
 - Implement Embassy in any frontends that need to know what permissions an authenticated user has in order to streamline their experience. Embassy was designed with frontend builds in mind!
 - Bask in the knowledge that your user service can go completely dead without interrupting the service of your logged-in users, or compromising your security.
@@ -157,7 +157,7 @@ Verifies a token's validity by checking its signature, expiration time, and cont
 
 ## Generating keys
 
-For asymmetric token signing, the openssl tool can handle creating all the different [key types](https://github.com/auth0/node-jsonwebtoken#algorithms-supported) Embassy supports. 256-bit elliptic curve crypto (ES256) is recommended due to its low overhead and high security. The following commands will generate a PEM-formatted keypair:
+For asymmetric token signing, the openssl tool can handle creating all the different [key types](https://github.com/auth0/node-jsonwebtoken#algorithms-supported) Embassy supports. 256-bit Elliptic Curve keys (ES256) are recommended due to their low overhead and high security. The following commands will generate a PEM-formatted key pair (replace KEY_ID appropriately):
 
 ```
 # Private key
