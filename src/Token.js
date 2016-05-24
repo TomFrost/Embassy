@@ -278,7 +278,7 @@ class Token {
    * @param {boolean} [opts.ignoreExpiration=false] If true, expired tokens will pass
    * verification checks
    * @param {number} [opts.maxAgeSecs] If specified, will fail verification if the token is older
-   * that the specified number of seconds
+   * than the specified number of seconds
    * @params {string|Buffer} [opts.key] The PEM-encoded public key to be used to verify the
    * token's signature. If specified, the key ID will be ignored.
    * @returns {Promise.<Object>} Resolves with the decoded token payload on success; rejects
