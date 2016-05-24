@@ -324,6 +324,10 @@ class Token {
     })
   }
 
+  /**
+   * Decodes the 'prm' permissions claim into a mapping of domain string to byte array, stored in `this._blobs`.
+   * @private
+   */
   _decodeBlobs() {
     if (this._claims.prm) {
       const segments = this._claims.prm.split(/[;:]/)
@@ -333,6 +337,11 @@ class Token {
     }
   }
 
+  /**
+   * Encodes `this._blobs` into a single string in the format domain1:base64perms1;domain2:base64perms2 (etc) and
+   * stores it into the 'prm' claim.
+   * @private
+   */
   _encodeBlobs() {
     const segments = []
     for (let domain in this._blobs) {
@@ -346,24 +355,55 @@ class Token {
     this._claims.prm = segments.join(';')
   }
 
+  /**
+   * Retrieves a byte array from the set of domain blobs, resizing it if necessary.
+   * @param {string} domain The domain string for which to get the permissions blob
+   * @param {number} [minBytes] The number of bytes the resulting array should have in it, at minimum
+   * @returns {Array<number>} The byte array for the given domain
+   * @private
+   */
   _getBlob(domain, minBytes) {
     const blob = this._blobs[domain] || []
     while (blob.length < (minBytes || 0)) blob.push(0)
     return blob
   }
 
+  /**
+   * Gets the binary components of an individual permission, as a map of key/value pairs. The components are:
+   * - {number} idx: The permission's index, from the domainPermissions map
+   * - {number} offset: The index of the byte inside the blob that contains this permission's bit
+   * - {Array<number>} blob: The full array of bytes defining this domain's permission blob
+   * - {number} byte: The individual target byte of the blob (same as blob[offset])
+   * - {number} mask: The bitmask targeting the individual permission bit in the provided byte
+   * @param {string} domain The domain containing the target permission
+   * @param {string} perm The name of the permission for which to retrieve the components
+   * @param {boolean} [resize=false] true to resize the resulting blob to fit the chosen permission bit; false
+   * to return it in the currently stored size
+   * @returns {Promise<{idx: number, offset: number, blob: Array<number>, byte: number, mask: number}>} Resolves with
+   * the components of the given permission
+   * @private
+   */
   _getPermComponents(domain, perm, resize) {
     const pc = {}
     return this._getPermIndex(domain, perm).then(idx => {
       pc.idx = idx
-      pc.offset = Token._getOffset(pc.idx)
+      pc.offset = Math.floor(idx / 8)
       pc.blob = this._getBlob(domain, resize ? pc.offset + 1 : 0)
-      pc.byte = Token._getByte(pc.blob, pc.offset)
-      pc.mask = Token._getBitMask(pc.idx)
+      pc.byte = pc.blob[pc.offset]
+      pc.mask = Math.pow(2, idx % 8)
       return pc
     })
   }
 
+  /**
+   * Gets the index of the specified permission from the domainPermissions map. If it's not found, this method attempts
+   * to refresh that map with the refreshPermissions method.
+   * @param {string} domain The domain containing the target permission
+   * @param {string} perm The name of the target permission
+   * @param {boolean} [noRetry=false] true to not attempt to refresh the domainPermissions map and retry this function
+   * @returns {Promise<number>} Resolves with the index of the target permission
+   * @private
+   */
   _getPermIndex(domain, perm, noRetry) {
     const map = this._opts.domainPermissions[domain]
     if (!map || !map.hasOwnProperty(perm)) {
@@ -378,19 +418,6 @@ class Token {
       })
     }
     return Promise.resolve(map[perm])
-  }
-
-  static _getBitMask(permIndex) {
-    return Math.pow(2, permIndex % 8)
-  }
-
-  static _getByte(blob, offset) {
-    if (offset >= blob.length) return false
-    return blob[offset]
-  }
-
-  static _getOffset(permIndex) {
-    return Math.floor(permIndex / 8)
   }
 }
 
