@@ -11,12 +11,6 @@ const KeyNotFoundError = require('./errors/KeyNotFoundError')
 const PermissionNotFoundError = require('./errors/PermissionNotFoundError')
 const TokenParseError = require('./errors/TokenParseError')
 
-/**
- * A mapping of options to their default values.
- * @type {Object}
- */
-
-
 class Token {
   /**
    * Creates a new Token.
