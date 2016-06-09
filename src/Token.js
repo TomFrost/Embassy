@@ -38,6 +38,10 @@ class Token {
    * @param {number} [opts.refreshPermsAfterMs=500] The number of milliseconds after the domainPermissions
    * map has been refreshed that it is eligible to be refreshed again. During this time, the permission map
    * will not attempt to update before throwing a {@link PermissionNotFoundError}.
+   * @param {Function} [opts.getPrivKey] In the event that {@link #sign} is called with a key ID that Embassy doesn't
+   * currently know about, this function (if specified) will be called with the key ID string as the only argument.
+   * It must return either an object with a "priv" and "algo" property (referring to the PEM-formatted private key or
+   * HMAC secret, and the key algorithm, respectively), or a promise that resolves to the same.
    * @param {Function} [opts.getPubKey] In the event a token with an unknown key ID needs to be verified,
    * this function (if specified) will be called with the key ID string as the only argument. It can either
    * return the PEM-encoded public key (or HMAC secret) for this ID, or a promise that resolves with the same.
@@ -237,14 +241,11 @@ class Token {
    * @param {Object} [opts.header={}] A mapping of keys and values to be set in the token
    * header, additionally to what the signing process creates by default
    * @returns {Promise.<string>} Resolves with the token string. Rejects if the signing key is not valid.
-   * @throws {Error} If options.subject was not specified, or if the key ID is missing critical components
+   * @throws {Error} If options.subject was not specified, and the 'sub' claim has not been set
    */
   sign(kid, opts) {
     opts = opts || {}
     if (!opts.subject && !this._claims.sub) throw new Error('A subject is required')
-    if (!this._opts.keys || !this._opts.keys[kid]) throw new Error(`Key ID "${kid}" not found in key map`)
-    if (!this._opts.keys[kid].priv) throw new Error(`Key ID "${kid}" requires a 'priv' property`)
-    if (!this._opts.keys[kid].algo) throw new Error(`Key ID "${kid}" requires an 'algo' property`)
     this._encodeBlobs()
     const params = {
       expiresIn: ((opts.expiresInSecs || this._opts.expiresInSecs) * 1000).toString(),
@@ -252,17 +253,32 @@ class Token {
       subject: opts.subject,
       issuer: opts.issuer || this._opts.issuer,
       noTimestamp: opts.noTimestamp,
-      header: opts.header || {},
-      algorithm: this._opts.keys[kid].algo
+      header: opts.header || {}
     }
     params.header.kid = kid
-    return new Promise((resolve, reject) => {
-      jwt.sign(this._claims, this._opts.keys[kid].priv, params, (err, token) => {
-        if (err) return reject(err)
-        this._token = token
-        const decoded = jwt.decode(token, {complete: true})
-        this._header = decoded.header
-        return resolve(token)
+    return Promise.resolve().then(() => {
+      if (!this._opts.keys[kid]) {
+        if (!this._opts.getPrivKey) throw new KeyNotFoundError(`Key ID "${kid}" not found in key map`)
+        return this._opts.getPrivKey(kid)
+      }
+      if (!this._opts.keys[kid].priv) throw new KeyNotFoundError(`Key ID "${kid}" requires a 'priv' property`)
+      if (!this._opts.keys[kid].algo) throw new KeyNotFoundError(`Key ID "${kid}" requires an 'algo' property`)
+      return {
+        priv: this._opts.keys[kid].priv,
+        algo: this._opts.keys[kid].algo
+      }
+    }).then(key => {
+      if (!this._opts.keys[kid]) this._opts.keys[kid] = key
+      else Object.assign(this._opts.keys[kid], key)
+      return new Promise((resolve, reject) => {
+        params.algorithm = key.algo
+        jwt.sign(this._claims, key.priv, params, (err, token) => {
+          if (err) return reject(err)
+          this._token = token
+          const decoded = jwt.decode(token, {complete: true})
+          this._header = decoded.header
+          return resolve(token)
+        })
       })
     })
   }

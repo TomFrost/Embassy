@@ -209,19 +209,43 @@ describe('Token', () => {
       return inst.sign('goodKey')
     })
     it('throws when there is no subject', () => {
-      return inst.sign.bind(inst, 'goodKey').should.throw(/subject is required/)
+      return inst.sign.bind(inst, 'goodKey').should.throw(Error, /subject is required/)
     })
     it('throws when the key ID is not in the key map', () => {
-      return inst.sign.bind(inst, 'noKey', { subject: 'foo' }).should.throw(/not found/)
+      return inst.sign('noKey', { subject: 'foo' }).should.be.rejectedWith(KeyNotFoundError, /not found/)
     })
     it('throws when the key has no priv property', () => {
-      return inst.sign.bind(inst, 'emptyKey', { subject: 'foo' }).should.throw(/priv\b.*\bproperty/)
+      return inst.sign('emptyKey', { subject: 'foo' }).should.be.rejectedWith(KeyNotFoundError, /priv\b.*\bproperty/)
     })
     it('throws when the key has no algo property', () => {
-      return inst.sign.bind(inst, 'privOnly', { subject: 'foo' }).should.throw(/algo\b.*\bproperty/)
+      return inst.sign('privOnly', { subject: 'foo' }).should.be.rejectedWith(KeyNotFoundError, /algo\b.*\bproperty/)
     })
     it('rejects if the key is corrupt', () => {
       return inst.sign('corruptKey', { subject: 'foo' }).should.be.rejected
+    })
+    it('calls getPrivKey when the private key is not found', () => {
+      inst = new Token({
+        getPrivKey: kid => tokenOpts.keys[kid]
+      })
+      return inst.sign('privAlgo', { subject: 'foo' })
+    })
+    it('supports promises from getPrivKey', () => {
+      inst = new Token({
+        getPrivKey: kid => Promise.resolve(tokenOpts.keys[kid])
+      })
+      return inst.sign('privAlgo', { subject: 'foo' })
+    })
+    it('caches the results of getPrivKey', () => {
+      let hits = 0
+      inst = new Token({
+        getPrivKey: kid => { hits++; return tokenOpts.keys[kid] }
+      })
+      return inst.sign('privAlgo', { subject: 'foo' }).then(() => {
+        hits.should.equal(1)
+        return inst.sign('privAlgo', { subject: 'foo' })
+      }).then(() => {
+        hits.should.equal(1)
+      })
     })
   })
   describe('verify', () => {

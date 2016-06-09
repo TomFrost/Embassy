@@ -2,7 +2,11 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Development]
-Nothing yet!
+### Added
+- The `getPrivKey` option to dynamically load a private signing key.
+
+### Changed
+- The sign() function now only throws if the subject is not found. Key resolution errors are rejections with a KeyNotFoundError.
 
 ## v0.1.0
 ### Added
