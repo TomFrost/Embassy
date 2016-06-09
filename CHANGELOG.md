@@ -2,6 +2,9 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Development]
+Nothing yet!
+
+## [v0.2.0]
 ### Added
 - The `getPrivKey` option to dynamically load a private signing key.
 
@@ -12,4 +15,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release
 
-[Development]: https://github.com/TechnologyAdvice/Squiss/compare/0.1.0...HEAD
+[Development]: https://github.com/TechnologyAdvice/Squiss/compare/v0.2.0...HEAD
+[v0.2.0]: https://github.com/TechnologyAdvice/Squiss/compare/v0.1.0...v0.2.0
