@@ -247,6 +247,10 @@ describe('Token', () => {
         hits.should.equal(1)
       })
     })
+    it('supports signing when the exp claim is already set', () => {
+      inst.setClaim('exp', 20)
+      return inst.sign('privAlgo', { subject: 'foo' })
+    })
   })
   describe('verify', () => {
     it('verifies a token immediately after signing, using the KID', () => {

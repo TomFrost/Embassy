@@ -247,6 +247,7 @@ class Token {
     opts = opts || {}
     if (!opts.subject && !this._claims.sub) throw new Error('A subject is required')
     this._encodeBlobs()
+    delete this._claims.exp
     const params = {
       expiresIn: ((opts.expiresInSecs || this._opts.expiresInSecs) * 1000).toString(),
       audience: opts.audience || this._opts.audience,

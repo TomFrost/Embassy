@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Development]
 Nothing yet!
 
+## [v0.2.1]
+### Fixed
+- sign() can now be called when an `exp` claim is already set. Embassy will delete the existing claim before calculating the new one and signing.
+
 ## [v0.2.0]
 ### Added
 - The `getPrivKey` option to dynamically load a private signing key.
@@ -15,5 +19,6 @@ Nothing yet!
 ### Added
 - Initial release
 
-[Development]: https://github.com/TechnologyAdvice/Squiss/compare/v0.2.0...HEAD
+[Development]: https://github.com/TechnologyAdvice/Squiss/compare/v0.2.1...HEAD
+[v0.2.1]: https://github.com/TechnologyAdvice/Squiss/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/TechnologyAdvice/Squiss/compare/v0.1.0...v0.2.0
