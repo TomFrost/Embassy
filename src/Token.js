@@ -258,10 +258,10 @@ class Token {
     }
     params.header.kid = kid
     return Promise.resolve().then(() => {
-      if (!this._opts.keys[kid]) {
-        if (!this._opts.getPrivKey) throw new KeyNotFoundError(`Key ID "${kid}" not found in key map`)
+      if ((!this._opts.keys[kid] || !this._opts.keys[kid].priv) && this._opts.getPrivKey) {
         return this._opts.getPrivKey(kid)
       }
+      if (!this._opts.keys[kid])  throw new KeyNotFoundError(`Key ID "${kid}" not found in key map`)
       if (!this._opts.keys[kid].priv) throw new KeyNotFoundError(`Key ID "${kid}" requires a 'priv' property`)
       if (!this._opts.keys[kid].algo) throw new KeyNotFoundError(`Key ID "${kid}" requires an 'algo' property`)
       return {

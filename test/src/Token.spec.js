@@ -229,6 +229,13 @@ describe('Token', () => {
       })
       return inst.sign('privAlgo', { subject: 'foo' })
     })
+    it('calls getPrivKey when only a pub key is present', () => {
+      inst = new Token({
+        getPrivKey: kid => tokenOpts.keys[kid],
+        keys: { privAlgo: { pub: 'PEM' } }
+      })
+      return inst.sign('privAlgo', { subject: 'foo' })
+    })
     it('supports promises from getPrivKey', () => {
       inst = new Token({
         getPrivKey: kid => Promise.resolve(tokenOpts.keys[kid])
