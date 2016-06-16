@@ -2,7 +2,8 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Development]
-Nothing yet!
+### Fixed
+- options.getPrivKey is now called when a public key for the same KID already exists
 
 ## [v0.2.1]
 ### Fixed
