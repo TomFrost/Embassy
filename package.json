@@ -1,6 +1,6 @@
 {
   "name": "embassy",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "JWT token generator/verifier with built-in permission flags",
   "main": "src/Embassy.js",
   "engines": {
