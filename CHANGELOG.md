@@ -2,6 +2,9 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Development]
+Nothing yet!
+
+## [v0.3.0]
 ### Added
 - refreshPermissions, getPrivKey, and getPubKey are now called with the Token object itself as the final argument.
 
@@ -24,7 +27,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release
 
-[Development]: https://github.com/TechnologyAdvice/Squiss/compare/v0.2.2...HEAD
+[Development]: https://github.com/TechnologyAdvice/Squiss/compare/v0.3.0...HEAD
+[v0.3.0]: https://github.com/TechnologyAdvice/Squiss/compare/v0.2.2...v0.3.0
 [v0.2.2]: https://github.com/TechnologyAdvice/Squiss/compare/v0.2.1...v0.2.2
 [v0.2.1]: https://github.com/TechnologyAdvice/Squiss/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/TechnologyAdvice/Squiss/compare/v0.1.0...v0.2.0
