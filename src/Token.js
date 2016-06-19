@@ -259,7 +259,7 @@ class Token {
     params.header.kid = kid
     return Promise.resolve().then(() => {
       if ((!this._opts.keys[kid] || !this._opts.keys[kid].priv) && this._opts.getPrivKey) {
-        return this._opts.getPrivKey(kid)
+        return this._opts.getPrivKey(kid, this)
       }
       if (!this._opts.keys[kid])  throw new KeyNotFoundError(`Key ID "${kid}" not found in key map`)
       if (!this._opts.keys[kid].priv) throw new KeyNotFoundError(`Key ID "${kid}" requires a 'priv' property`)
@@ -318,7 +318,7 @@ class Token {
         return this._opts.keys[this._header.kid].pub
       }
       if (this._opts.getPubKey) {
-        return Promise.resolve(this._opts.getPubKey(this._header.kid)).then(pubKey => {
+        return Promise.resolve(this._opts.getPubKey(this._header.kid, this)).then(pubKey => {
           if (!this._opts.keys[this._header.kid]) this._opts.keys[this._header.kid] = {}
           this._opts.keys[this._header.kid].pub = pubKey
           return pubKey
@@ -422,7 +422,7 @@ class Token {
       if (noRetry || !this._opts.refreshPermissions || Date.now() < updateAfter) {
         return Promise.reject(new PermissionNotFoundError(`Permission name does not exist: ${domain}.${perm}`))
       }
-      return Promise.resolve(this._opts.refreshPermissions()).then(domainPermissions => {
+      return Promise.resolve(this._opts.refreshPermissions(this)).then(domainPermissions => {
         this._opts.permsLastUpdate = Date.now()
         Object.assign(this._opts.domainPermissions, domainPermissions)
         return this._getPermIndex(domain, perm, true)
