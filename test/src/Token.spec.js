@@ -175,6 +175,15 @@ describe('Token', () => {
         .then(() =>  delay(11))
         .then(() => inst.hasPermission('bar', 'baz'))
     })
+    it('calls refreshPermissions with the token as an argument', () => {
+      const refreshPermissions = (token) => {
+        should.exist(token.getClaim('foo'))
+        return domainPermissions
+      }
+      inst = new Token({ refreshPermissions })
+      inst.setClaim('foo', 'bar')
+      return inst.grantPermission('foo', 'bar')
+    })
   })
   describe('signatures', () => {
     it('signs a token', () => {
@@ -226,6 +235,16 @@ describe('Token', () => {
     it('calls getPrivKey when the private key is not found', () => {
       inst = new Token({
         getPrivKey: kid => tokenOpts.keys[kid]
+      })
+      return inst.sign('privAlgo', { subject: 'foo' })
+    })
+    it('calls getPrivKey with the token as an argument', () => {
+      inst = new Token({
+        claims: { foo: 'bar' },
+        getPrivKey: (kid, token) => {
+          should.exist(token.getClaim('foo'))
+          return tokenOpts.keys[kid]
+        }
       })
       return inst.sign('privAlgo', { subject: 'foo' })
     })
@@ -315,6 +334,17 @@ describe('Token', () => {
       return inst.sign('goodKey', { subject: 'foo' }).then((token) => {
         inst = new Token({ token })
         return inst.verify().should.be.rejectedWith(KeyNotFoundError)
+      })
+    })
+    it('calls getPubKey with the token as an argument', () => {
+      const getPubKey = (kid, token) => {
+        token.getClaim('sub').should.equal('foo')
+        if (kid === 'goodKey') return keys.pub
+        throw new Error('Bad KID')
+      }
+      return inst.sign('goodKey', { subject: 'foo' }).then((token) => {
+        inst = new Token({ token, getPubKey })
+        return inst.verify()
       })
     })
   })

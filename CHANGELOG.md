@@ -2,7 +2,8 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Development]
-Nothing yet!
+### Added
+- refreshPermissions, getPrivKey, and getPubKey are now called with the Token object itself as the final argument.
 
 ## [v0.2.2]
 ### Fixed
