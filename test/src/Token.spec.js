@@ -1,6 +1,6 @@
 /*
  * Embassy
- * Copyright (c) 2016, TechnologyAdvice LLC
+ * Copyright (c) 2017 Tom Shawver LLC
  */
 
 /* globals describe, it, beforeEach, afterEach, before, after, should */

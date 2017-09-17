@@ -1,4 +1,4 @@
-# Embassy [![Build Status](https://travis-ci.org/TechnologyAdvice/Embassy.svg?branch=master)](https://travis-ci.org/TechnologyAdvice/Embassy) [![Test Coverage](https://codeclimate.com/github/TechnologyAdvice/Embassy/badges/coverage.svg)](https://codeclimate.com/github/TechnologyAdvice/Embassy/coverage)
+# Embassy [![Build Status](https://travis-ci.org/TomFrost/Embassy.svg?branch=master)](https://travis-ci.org/TomFrost/Embassy)
 Generate and verify Javascript Web Tokens, containing dynamic microservice permissions and settings.
 
 ## Use cases
@@ -83,7 +83,7 @@ Embassy must be instantiated with any necessary options before it can be used. A
 - **keys:** A mapping of key IDs to key objects used for signing and verifying tokens. Key objects require `priv` (a private key or HMAC secret) and `algo` (the [crypto algorithm](https://github.com/auth0/node-jsonwebtoken#algorithms-supported) to use) for token signing. Additionally, provide `pub` (a public key or HMAC secret) for key verification.
 - **refreshPermissions _function({Token} token)_:** An optional function that, when called, will return either a replacement domainPermissions map, or a Promise that resolves to one. Only called when Embassy encounters a permission that doesn't exist in its current domainPermissions map. Using this, permissions can be stored in a database and created in real time in a live system.
 - **refreshPermsAfterMs:** _Default 500._ The number of milliseconds after the domainPermissions have been refreshed that it is eligible to be refreshed again.
-- **getPrivKey _function({string} kid, {Token} token)_:** In the event that `sign()` is called with a key ID that Embassy doesn't currently know about, this function (if specified) will be called with the key ID string. It must return either an object with a "priv" and "algo" property (referring to the PEM-formatted private key or HMAC secret, and the key algorithm, respectively), or a promise that resolves to the same. Using this, private keys can be stored in an encrypted system (like [Cryptex](https://github.com/TechnologyAdvice/Cryptex)) and only decrypted when requested.
+- **getPrivKey _function({string} kid, {Token} token)_:** In the event that `sign()` is called with a key ID that Embassy doesn't currently know about, this function (if specified) will be called with the key ID string. It must return either an object with a "priv" and "algo" property (referring to the PEM-formatted private key or HMAC secret, and the key algorithm, respectively), or a promise that resolves to the same. Using this, private keys can be stored in an encrypted system (like [Cryptex](https://github.com/TomFrost/Cryptex)) and only decrypted when requested.
 - **getPubKey _function({string} kid, {Token} token)_:** An optional function that, when called with a key ID, will return either the public key/HMAC secret for that ID, or a Promise that resolves to one. Using this, public keys can be stored in a highly durable, publicly accessible URL, and private keys can be rotated in the token-generating service without having to inform the other microservices of new keys.
 - **expiresInSecs:** The number of seconds after a token has been created at which it will expire. This can be overridden when the token is signed.
 - **audience:** An arbitrary string defining who the intended audience for this token is. If specified, any tokens that do not have this audience string will fail validation.
@@ -171,4 +171,8 @@ openssl ec -in KEY_ID.priv.pem -pubout -out KEY_ID.pub.pem
 Embassy supports Node 4 LTE and higher out of the box. For 0.12 or frontend support, consider compiling with Babel.
 
 ## License
-Embassy is Copyright (c) 2016 TechnologyAdvice LLC, released under the ultra-permissive ISC license. See LICENSE.txt for details.
+Embassy is Copyright (c) 2017 Tom Shawver, released under the ultra-permissive ISC license. See LICENSE.txt for details.
+
+## Credits
+Embassy was originally created at [TechnologyAdvice](http://www.technologyadvice.com) in Nashville, TN.
+
