@@ -2,6 +2,9 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Development]
+Nothing yet!
+
+## [v0.3.1]
 ### Fixed
 - Updated all dependencies to resolve security warnings
 
@@ -28,8 +31,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release
 
-[Development]: https://github.com/TomFrost/Squiss/compare/v0.3.0...HEAD
-[v0.3.0]: https://github.com/TomFrost/Squiss/compare/v0.2.2...v0.3.0
-[v0.2.2]: https://github.com/TomFrost/Squiss/compare/v0.2.1...v0.2.2
-[v0.2.1]: https://github.com/TomFrost/Squiss/compare/v0.2.0...v0.2.1
-[v0.2.0]: https://github.com/TomFrost/Squiss/compare/v0.1.0...v0.2.0
+[Development]: https://github.com/TomFrost/Embassy/compare/v0.3.0...HEAD
+[v0.3.0]: https://github.com/TomFrost/Embassy/compare/v0.2.2...v0.3.0
+[v0.2.2]: https://github.com/TomFrost/Embassy/compare/v0.2.1...v0.2.2
+[v0.2.1]: https://github.com/TomFrost/Embassy/compare/v0.2.0...v0.2.1
+[v0.2.0]: https://github.com/TomFrost/Embassy/compare/v0.1.0...v0.2.0
