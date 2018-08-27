@@ -171,8 +171,7 @@ openssl ec -in KEY_ID.priv.pem -pubout -out KEY_ID.pub.pem
 Embassy supports Node 4 LTE and higher out of the box. For 0.12 or frontend support, consider compiling with Babel.
 
 ## License
-Embassy is Copyright (c) 2017 Tom Shawver, released under the ultra-permissive ISC license. See LICENSE.txt for details.
+Embassy is Copyright (c) 2017-2018 Tom Shawver, released under the ultra-permissive ISC license. See LICENSE.txt for details.
 
 ## Credits
 Embassy was originally created at [TechnologyAdvice](http://www.technologyadvice.com) in Nashville, TN.
-

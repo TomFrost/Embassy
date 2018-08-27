@@ -1,6 +1,6 @@
 /*
  * Embassy
- * Copyright (c) 2017 Tom Shawver LLC
+ * Copyright (c) 2017-2018 Tom Shawver
  */
 
 'use strict'
@@ -250,12 +250,14 @@ class Token {
     delete this._claims.exp
     const params = {
       expiresIn: ((opts.expiresInSecs || this._opts.expiresInSecs) * 1000).toString(),
-      audience: opts.audience || this._opts.audience,
-      subject: opts.subject,
-      issuer: opts.issuer || this._opts.issuer,
-      noTimestamp: opts.noTimestamp,
+      noTimestamp: !!opts.noTimestamp,
       header: opts.header || {}
     }
+    if (opts.subject) params.subject = opts.subject
+    const aud = opts.audience || this._opts.audience
+    if (aud) params.audience = aud
+    const iss = opts.issuer || this._opts.issuer
+    if (iss) params.issuer = iss
     params.header.kid = kid
     return Promise.resolve().then(() => {
       if ((!this._opts.keys[kid] || !this._opts.keys[kid].priv) && this._opts.getPrivKey) {
@@ -304,11 +306,13 @@ class Token {
   verify(opts) {
     opts = opts || {}
     const params = {
-      issuer: opts.issuer || this._opts.issuer,
-      audience: opts.audience || this._opts.audience,
       ignoreExpiration: opts.ignoreExpiration || false,
       maxAge: opts.maxAgeSecs ? (opts.maxAgeSecs * 1000).toString() : undefined
     }
+    const aud = opts.audience || this._opts.audience
+    if (aud) params.audience = aud
+    const iss = opts.issuer || this._opts.issuer
+    if (iss) params.issuer = iss
     return Promise.resolve().then(() => {
       if (!this._token) {
         throw new Error('No token string to verify')

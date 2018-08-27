@@ -2,7 +2,8 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Development]
-Nothing yet!
+### Fixed
+- Updated all dependencies to resolve security warnings
 
 ## [v0.3.0]
 ### Added
