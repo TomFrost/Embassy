@@ -16,7 +16,7 @@ class Embassy {
    * @param {Object} [opts] An object mapping of configuration objects. For all available options, see
    * {@link Token#constructor}.
    */
-  constructor(opts) {
+  constructor (opts) {
     const optDefaults = {
       keys: {},
       domainPermissions: {}
@@ -29,7 +29,7 @@ class Embassy {
    * @param {Object} [claims] A mapping of JWT claim keys to appropriate values
    * @returns {Token} The newly created token object
    */
-  createToken(claims) {
+  createToken (claims) {
     return new Token(Object.assign({}, this._opts, { claims }))
   }
 
@@ -38,7 +38,7 @@ class Embassy {
    * @param {string} [token] The encoded token string
    * @returns {Token} A token object, initiated with the data contained in the token string
    */
-  parseToken(token) {
+  parseToken (token) {
     return new Token(Object.assign({}, this._opts, { token }))
   }
 }

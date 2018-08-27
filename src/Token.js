@@ -56,7 +56,7 @@ class Token {
    * behavior, provide the issuer as an option to {@link Token#sign}.
    * @throws {TokenParseError} if the provided token cannot be parsed
    */
-  constructor(opts) {
+  constructor (opts) {
     const optDefaults = {
       expiresInSecs: 900,
       permsLastUpdate: 0,
@@ -85,7 +85,7 @@ class Token {
    * @param {string} claim The name of the claim for which the value should be retrieved
    * @returns {*} The value of the claim, or undefined if the claim does not exist
    */
-  getClaim(claim) {
+  getClaim (claim) {
     return this._claims.hasOwnProperty(claim) ? this._claims[claim] : undefined
   }
 
@@ -95,7 +95,7 @@ class Token {
    * @param {string} key The name of the option for which the value should be retrieved
    * @returns {*} The value of the targeted option, or undefined if the option does not exist
    */
-  getOption(domain, key) {
+  getOption (domain, key) {
     if (this._claims.opt && this._claims.opt[domain]) {
       return this._claims.opt[domain][key]
     }
@@ -111,7 +111,7 @@ class Token {
    * @returns {Promise} Resolves when the permission has been granted, rejects if the given permission
    * does not exist
    */
-  grantPermission(domain, perm) {
+  grantPermission (domain, perm) {
     return this._getPermComponents(domain, perm, true).then(pc => {
       // Bitwise OR together the original byte with the bit mask to set the permission bit
       pc.blob[pc.offset] = pc.byte | pc.mask
@@ -127,7 +127,7 @@ class Token {
    * @returns {Promise} Resolves when the permissions have been granted, rejects if any given permission
    * does not exist
    */
-  grantPermissions(domain, perms) {
+  grantPermissions (domain, perms) {
     let chain = Promise.resolve()
     perms.forEach(perm => {
       chain = chain.then(() => this.grantPermission(domain, perm))
@@ -142,7 +142,7 @@ class Token {
    * @returns {Promise.<boolean>} Resolves true if the permission has been set; false otherwise.
    * Rejects if the permission does not exist.
    */
-  hasPermission(domain, perm) {
+  hasPermission (domain, perm) {
     return this._getPermComponents(domain, perm).then(pc => {
       // Use bitwise AND to determine if the byte contains the bit mask
       return pc.byte ? (pc.byte & pc.mask) === pc.mask : false
@@ -156,7 +156,7 @@ class Token {
    * @returns {Promise.<boolean>} Resolves true if each permission has been set; false otherwise.
    * Rejects if any given permission does not exist.
    */
-  hasPermissions(domain, perms) {
+  hasPermissions (domain, perms) {
     let chain = Promise.resolve(true)
     perms.forEach(perm => {
       chain = chain.then((pass) => {
@@ -175,7 +175,7 @@ class Token {
    * @returns {Promise} Resolves when the permission has been revoked, rejects if the
    * permission does not exist.
    */
-  revokePermission(domain, perm) {
+  revokePermission (domain, perm) {
     return this._getPermComponents(domain, perm).then(pc => {
       if (pc.byte) {
         // Use bitwise AND with the inverse of the bit mask to unset the permission bit
@@ -193,7 +193,7 @@ class Token {
    * @returns {Promise} Resolves when each permission has been revoked, rejects if any given
    * permission does not exist.
    */
-  revokePermissions(domain, perms) {
+  revokePermissions (domain, perms) {
     let chain = Promise.resolve()
     perms.forEach(perm => {
       chain = chain.then(() => this.revokePermission(domain, perm))
@@ -207,7 +207,7 @@ class Token {
    * @param {string} claim The name of the claim to be set
    * @param {*} val The value for the claim
    */
-  setClaim(claim, val) {
+  setClaim (claim, val) {
     this._claims[claim] = val
   }
 
@@ -218,7 +218,7 @@ class Token {
    * @param {string} key The name of the option to be set
    * @param {*} val The value for the option
    */
-  setOption(domain, key, val) {
+  setOption (domain, key, val) {
     if (!this._claims.opt) this._claims.opt = {}
     if (!this._claims.opt[domain]) this._claims.opt[domain] = {}
     this._claims.opt[domain][key] = val
@@ -243,7 +243,7 @@ class Token {
    * @returns {Promise.<string>} Resolves with the token string. Rejects if the signing key is not valid.
    * @throws {Error} If options.subject was not specified, and the 'sub' claim has not been set
    */
-  sign(kid, opts) {
+  sign (kid, opts) {
     opts = opts || {}
     if (!opts.subject && !this._claims.sub) throw new Error('A subject is required')
     this._encodeBlobs()
@@ -263,7 +263,7 @@ class Token {
       if ((!this._opts.keys[kid] || !this._opts.keys[kid].priv) && this._opts.getPrivKey) {
         return this._opts.getPrivKey(kid, this)
       }
-      if (!this._opts.keys[kid])  throw new KeyNotFoundError(`Key ID "${kid}" not found in key map`)
+      if (!this._opts.keys[kid]) throw new KeyNotFoundError(`Key ID "${kid}" not found in key map`)
       if (!this._opts.keys[kid].priv) throw new KeyNotFoundError(`Key ID "${kid}" requires a 'priv' property`)
       if (!this._opts.keys[kid].algo) throw new KeyNotFoundError(`Key ID "${kid}" requires an 'algo' property`)
       return {
@@ -303,7 +303,7 @@ class Token {
    * @returns {Promise.<Object>} Resolves with the decoded token payload on success; rejects
    * if the token fails to pass verification checks.
    */
-  verify(opts) {
+  verify (opts) {
     opts = opts || {}
     const params = {
       ignoreExpiration: opts.ignoreExpiration || false,
@@ -343,7 +343,7 @@ class Token {
    * Decodes the 'prm' permissions claim into a mapping of domain string to byte array, stored in `this._blobs`.
    * @private
    */
-  _decodeBlobs() {
+  _decodeBlobs () {
     if (this._claims.prm) {
       const segments = this._claims.prm.split(/[;:]/)
       for (let i = 0; i < segments.length; i += 2) {
@@ -357,7 +357,7 @@ class Token {
    * stores it into the 'prm' claim.
    * @private
    */
-  _encodeBlobs() {
+  _encodeBlobs () {
     const segments = []
     for (let domain in this._blobs) {
       /* istanbul ignore else */
@@ -377,7 +377,7 @@ class Token {
    * @returns {Array<number>} The byte array for the given domain
    * @private
    */
-  _getBlob(domain, minBytes) {
+  _getBlob (domain, minBytes) {
     const blob = this._blobs[domain] || []
     while (blob.length < (minBytes || 0)) blob.push(0)
     return blob
@@ -398,7 +398,7 @@ class Token {
    * the components of the given permission
    * @private
    */
-  _getPermComponents(domain, perm, resize) {
+  _getPermComponents (domain, perm, resize) {
     const pc = {}
     return this._getPermIndex(domain, perm).then(idx => {
       pc.idx = idx
@@ -419,7 +419,7 @@ class Token {
    * @returns {Promise<number>} Resolves with the index of the target permission
    * @private
    */
-  _getPermIndex(domain, perm, noRetry) {
+  _getPermIndex (domain, perm, noRetry) {
     const map = this._opts.domainPermissions[domain]
     if (!map || !map.hasOwnProperty(perm)) {
       const updateAfter = this._opts.permsLastUpdate + this._opts.refreshPermsAfterMs

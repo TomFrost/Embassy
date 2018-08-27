@@ -12,7 +12,7 @@
     "mocha": "mocha",
     "test-cov": "istanbul cover _mocha",
     "check-cov": "istanbul check-coverage --statements 95 --branches 95 --functions 100 --lines 100",
-    "lint": "eslint ./src ./test"
+    "lint": "standard"
   },
   "repository": {
     "type": "git",
@@ -43,8 +43,8 @@
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "delay": "^3.1.0",
-    "eslint": "^5.4.0",
     "istanbul": "^0.4.5",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "standard": "^11.0.1"
   }
 }

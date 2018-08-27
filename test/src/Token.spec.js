@@ -3,7 +3,7 @@
  * Copyright (c) 2017-2018 Tom Shawver
  */
 
-/* globals describe, it, beforeEach, afterEach, before, after, should */
+/* globals describe, it, beforeEach, should */
 'use strict'
 
 const Token = require('src/Token')
@@ -172,7 +172,7 @@ describe('Token', () => {
       }
       inst = new Token({ refreshPermissions, refreshPermsAfterMs: 10 })
       return inst.hasPermission('foo', 'bar')
-        .then(() =>  delay(11))
+        .then(() => delay(11))
         .then(() => inst.hasPermission('bar', 'baz'))
     })
     it('calls refreshPermissions with the token as an argument', () => {
@@ -188,7 +188,7 @@ describe('Token', () => {
   describe('signatures', () => {
     it('signs a token', () => {
       return inst.sign('goodKey', { subject: 'foo' }).then(token => {
-        token.should.be.a.string
+        ;(typeof token).should.equal('string')
         token.split('.').should.have.length(3)
       })
     })

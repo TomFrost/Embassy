@@ -3,7 +3,7 @@
  * Copyright (c) 2017-2018 Tom Shawver
  */
 
-/* globals describe, it, beforeEach, afterEach, before, after, should */
+/* globals describe, it, beforeEach */
 'use strict'
 
 const Embassy = require('src/Embassy')

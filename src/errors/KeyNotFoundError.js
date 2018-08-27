@@ -10,7 +10,7 @@
  * 'status' property to 403 so this error can be treated as an HTTP error for convenience.
  */
 class KeyNotFoundError extends Error {
-  constructor(message) {
+  constructor (message) {
     super(message)
     this.name = this.constructor.name
     this.message = message
