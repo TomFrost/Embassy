@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Nothing yet!
 
-## [v1.0.0] - 2020-01-13
+## [v2.0.0] - 2020-01-13
 
 ### Changes
 
@@ -14,6 +14,10 @@ Nothing yet!
 - Permissions have been changed to scopes, which can be granted and revoked as plain strings
 - Claims can now be read and written directly on a `token.claims` object without accessor functions
 - HMAC signing and verification is now supported
+
+## v1.0.0
+
+This version intentionally skipped due to 2015 publishing error
 
 ## [v0.3.2]
 
@@ -61,8 +65,8 @@ Nothing yet!
 
 - Initial release
 
-[development]: https://github.com/TomFrost/Embassy/compare/v1.0.0...HEAD
-[v1.0.0]: https://github.com/TomFrost/Embassy/compare/v0.3.2...v1.0.2
+[development]: https://github.com/TomFrost/Embassy/compare/v2.0.0...HEAD
+[v2.0.0]: https://github.com/TomFrost/Embassy/compare/v0.3.2...v2.0.0
 [v0.3.2]: https://github.com/TomFrost/Embassy/compare/v0.3.1...v0.3.2
 [v0.3.1]: https://github.com/TomFrost/Embassy/compare/v0.3.0...v0.3.1
 [v0.3.0]: https://github.com/TomFrost/Embassy/compare/v0.2.2...v0.3.0
