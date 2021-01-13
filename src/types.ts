@@ -202,7 +202,7 @@ export interface EmbassyOptions extends ExpiringClaimsOptions {
    * @returns A private key definition for the supplied `kid`, or a promise that
    * resolves to one.
    */
-  getPrivKey?: (
+  getPrivateKey?: (
     kid: string
   ) => PrivateKeyDefinition | Promise<PrivateKeyDefinition>
   /**
@@ -212,7 +212,7 @@ export interface EmbassyOptions extends ExpiringClaimsOptions {
    * public key.
    *
    * @remarks
-   * When verifying a token signed with HMAC, `getPrivKey` is used since
+   * When verifying a token signed with HMAC, `getPrivateKey` is used since
    * symmetric keys should never be considered "public". This distinction is
    * made automatically based on the algorithm header of the token being
    * verified.
@@ -220,7 +220,7 @@ export interface EmbassyOptions extends ExpiringClaimsOptions {
    * @param kid - The ID of the key to be retrieved
    * @returns The PEM-encoded public key associated with the supplied `kid`.
    */
-  getPubKey?: (kid: string) => string | Promise<string>
+  getPublicKey?: (kid: string) => string | Promise<string>
 }
 
 export interface TokenOptions extends EmbassyOptions {
@@ -282,8 +282,8 @@ export interface TokenVerificationOptions extends CommonClaimsOptions {
   /**
    * The key to use to verify the token's signature. If omitted, Embassy will
    * look in the `keys` property passed to the constructor, or execute
-   * `getPrivKey` (for symmetric algorithms) or `getPubKey` (for asymmetric)
-   * if it's not found in `keys`.
+   * `getPrivateKey` (for symmetric algorithms) or `getPublicKey`
+   * (for asymmetric) if it's not found in `keys`.
    */
   key?: string
 }

@@ -270,7 +270,7 @@ export class Token {
    *
    * @param kid - An identifier for the key with which to sign this token. The
    * private key or HMAC secret must either exist in the `keys` map passed in
-   * the constructor options, or be retrievable by the `getPrivKey` function
+   * the constructor options, or be retrievable by the `getPrivateKey` function
    * provided to the constructor.
    * @param opts - Options to configure the token signing process
    * @returns the signed and encoded token string.
@@ -395,9 +395,9 @@ export class Token {
    * Retrieves the private key definition for a specified key ID. This function
    * will first attempt to pull the private key (and associated algorithm) from
    * the `keys` object passed to the constructor, and if not found there, will
-   * call the `getPrivKey` function passed to the constructor if one exists.
+   * call the `getPrivateKey` function passed to the constructor if one exists.
    * If a private key is found through that method, it will be saved back to the
-   * provided `keys` object to avoid calling `getPrivKey` for the same key ID
+   * provided `keys` object to avoid calling `getPrivateKey` for the same key ID
    * again.
    *
    * @param kid - The key ID of the private key definition to be retrieved
@@ -410,8 +410,8 @@ export class Token {
     kid: string
   ): Promise<PrivateKeyDefinition> {
     const keys = this.opts.keys
-    if (!keys[kid]?.privateKey && this.opts.getPrivKey) {
-      const privKeyDef = await this.opts.getPrivKey(kid)
+    if (!keys[kid]?.privateKey && this.opts.getPrivateKey) {
+      const privKeyDef = await this.opts.getPrivateKey(kid)
       if (!keys[kid]) keys[kid] = privKeyDef
       else keys[kid].privateKey = privKeyDef.privateKey
     }
@@ -427,8 +427,8 @@ export class Token {
    * so that the function knows to look for a private "key" for symmetric
    * signing algorithms, and a public key for asymmetric. If the key not does
    * exist in the `keys` option passed to the constructor, this function will
-   * attempt to use `getPubKey` if it exists, caching the successful result back
-   * in the `keys` object for next time.
+   * attempt to use `getPublicKey` if it exists, caching the successful result
+   * back in the `keys` object for next time.
    *
    * @param kid - The key ID of the key to be retrieved
    * @param algorithm - The algorithm that the key is meant for
@@ -450,8 +450,8 @@ export class Token {
     }
     // Asymmetric keys are public keys. Check that next.
     const keys = this.opts.keys
-    if (!keys[kid]?.publicKey && this.opts.getPubKey) {
-      const publicKey = await this.opts.getPubKey(kid)
+    if (!keys[kid]?.publicKey && this.opts.getPublicKey) {
+      const publicKey = await this.opts.getPublicKey(kid)
       if (!keys[kid]) keys[kid] = { algorithm, publicKey }
       else keys[kid].publicKey = publicKey
     }

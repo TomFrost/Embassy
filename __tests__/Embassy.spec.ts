@@ -43,9 +43,9 @@ describe('Embassy', () => {
       expect(refreshScopes).toBeCalledTimes(1)
     })
     it('persists public keys to new Tokens', async () => {
-      const getPubKey = jest.fn().mockResolvedValue(pub)
+      const getPublicKey = jest.fn().mockResolvedValue(pub)
       inst = new Embassy({
-        getPubKey,
+        getPublicKey,
         keys: {
           goodKey: { privateKey: priv, algorithm: 'ES256' }
         }
@@ -53,10 +53,10 @@ describe('Embassy', () => {
       const token1 = inst.createToken({ sub: 'foo' })
       const token1Str = await token1.sign('goodKey')
       await token1.verify()
-      expect(getPubKey).toBeCalledTimes(1)
+      expect(getPublicKey).toBeCalledTimes(1)
       const token2 = inst.parseToken(token1Str)
       await token2.verify()
-      expect(getPubKey).toBeCalledTimes(1)
+      expect(getPublicKey).toBeCalledTimes(1)
     })
   })
   describe('parseToken', () => {

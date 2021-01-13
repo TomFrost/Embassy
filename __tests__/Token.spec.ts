@@ -250,9 +250,9 @@ describe('Token', () => {
         inst.sign('corruptKey', { subject: 'foo' })
       ).rejects.toThrowError()
     })
-    it('calls getPrivKey when the private key is not found', async () => {
+    it('calls getPrivateKey when the private key is not found', async () => {
       inst = new Token({
-        getPrivKey: (kid) => {
+        getPrivateKey: (kid) => {
           const { privateKey, algorithm } = tokenOpts.keys[kid]
           return { privateKey, algorithm }
         }
@@ -260,9 +260,9 @@ describe('Token', () => {
       const signed = await inst.sign('privAlgo', { subject: 'foo' })
       expect(signed).toBeDefined()
     })
-    it('calls getPrivKey when only a pub key is present', async () => {
+    it('calls getPrivateKey when only a pub key is present', async () => {
       inst = new Token({
-        getPrivKey: (kid) => {
+        getPrivateKey: (kid) => {
           const { privateKey, algorithm } = tokenOpts.keys[kid]
           return { privateKey, algorithm }
         },
@@ -271,9 +271,9 @@ describe('Token', () => {
       const signed = await inst.sign('privAlgo', { subject: 'foo' })
       expect(signed).toBeDefined()
     })
-    it('supports promises from getPrivKey', async () => {
+    it('supports promises from getPrivateKey', async () => {
       inst = new Token({
-        getPrivKey: async (kid) => {
+        getPrivateKey: async (kid) => {
           const { privateKey, algorithm } = tokenOpts.keys[kid]
           return { privateKey, algorithm }
         }
@@ -281,16 +281,16 @@ describe('Token', () => {
       const signed = await inst.sign('privAlgo', { subject: 'foo' })
       expect(signed).toBeDefined()
     })
-    it('caches the results of getPrivKey', async () => {
-      const getPrivKey = jest.fn(async (kid) => {
+    it('caches the results of getPrivateKey', async () => {
+      const getPrivateKey = jest.fn(async (kid) => {
         const { privateKey, algorithm } = tokenOpts.keys[kid]
         return { privateKey, algorithm }
       })
-      inst = new Token({ getPrivKey })
+      inst = new Token({ getPrivateKey })
       await inst.sign('privAlgo', { subject: 'foo' })
-      expect(getPrivKey).toBeCalledTimes(1)
+      expect(getPrivateKey).toBeCalledTimes(1)
       await inst.sign('privAlgo', { subject: 'foo' })
-      expect(getPrivKey).toBeCalledTimes(1)
+      expect(getPrivateKey).toBeCalledTimes(1)
     })
     it('supports signing when an exp claim is already set', async () => {
       const now = Math.floor(Date.now() / 1000)
@@ -356,25 +356,25 @@ describe('Token', () => {
       ).rejects.toThrowError(TokenExpiredError)
     })
     it('calls function to get pub key via Promise', async () => {
-      const getPubKey = jest.fn().mockResolvedValue(pub)
+      const getPublicKey = jest.fn().mockResolvedValue(pub)
       const signed = await inst.sign('goodKey', { subject: 'foo' })
-      inst = new Token({ token: signed, getPubKey })
+      inst = new Token({ token: signed, getPublicKey })
       await expect(inst.verify()).resolves.toBeTruthy()
-      expect(getPubKey).toBeCalledTimes(1)
-      expect(getPubKey).toBeCalledWith('goodKey')
+      expect(getPublicKey).toBeCalledTimes(1)
+      expect(getPublicKey).toBeCalledWith('goodKey')
     })
     it('calls function to get pub key synchronously', async () => {
-      const getPubKey = jest.fn().mockReturnValue(pub)
+      const getPublicKey = jest.fn().mockReturnValue(pub)
       const signed = await inst.sign('goodKey', { subject: 'foo' })
-      inst = new Token({ token: signed, getPubKey })
+      inst = new Token({ token: signed, getPublicKey })
       await expect(inst.verify()).resolves.toBeTruthy()
-      expect(getPubKey).toBeCalledTimes(1)
-      expect(getPubKey).toBeCalledWith('goodKey')
+      expect(getPublicKey).toBeCalledTimes(1)
+      expect(getPublicKey).toBeCalledWith('goodKey')
     })
     it('gets public key when private key already exists', async () => {
-      const getPubKey = jest.fn().mockResolvedValue(pub)
+      const getPublicKey = jest.fn().mockResolvedValue(pub)
       const token = await inst.sign('privAlgo', { subject: 'foo' })
-      inst = new Token({ ...tokenOpts, token, getPubKey })
+      inst = new Token({ ...tokenOpts, token, getPublicKey })
       await expect(inst.verify()).resolves.toBeTruthy()
     })
     it('throws KeyNotFoundError when no pub key exists', async () => {
