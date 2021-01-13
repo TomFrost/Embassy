@@ -2,7 +2,7 @@
   "name": "embassy",
   "version": "0.3.2",
   "description": "JWT token generator/verifier with built-in permission flags",
-  "main": "src/Embassy.js",
+  "main": "dist/index.js",
   "engines": {
     "node": ">=12"
   },
