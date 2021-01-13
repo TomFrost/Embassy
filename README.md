@@ -1,3 +1,5 @@
+embassy / [Exports](docs/modules.md)
+
 # Embassy [![Build Status](https://travis-ci.org/TomFrost/Embassy.svg?branch=master)](https://travis-ci.org/TomFrost/Embassy)
 
 Generate and verify Javascript Web Tokens, containing dynamic microservice permissions and settings.
