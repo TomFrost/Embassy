@@ -34,7 +34,7 @@ The audience string with which to sign and verify tokens by default.
 
 Inherited from: [EmbassyOptions](embassyoptions.md).[audience](embassyoptions.md#audience)
 
-Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L120)
+Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L120)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 A mapping of default claims to add to each new JWT, unless overridden.
 
-Defined in: [src/types.ts:228](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L228)
+Defined in: [src/types.ts:228](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L228)
 
 ___
 
@@ -76,7 +76,7 @@ shifting the indexes of scopes that come after them.
 
 Inherited from: [EmbassyOptions](embassyoptions.md).[domainScopes](embassyoptions.md#domainscopes)
 
-Defined in: [src/types.ts:161](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L161)
+Defined in: [src/types.ts:161](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L161)
 
 ___
 
@@ -91,7 +91,7 @@ default.
 
 Inherited from: [EmbassyOptions](embassyoptions.md).[expiresInSecs](embassyoptions.md#expiresinsecs)
 
-Defined in: [src/types.ts:134](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L134)
+Defined in: [src/types.ts:134](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L134)
 
 ___
 
@@ -117,7 +117,7 @@ resolves to one.
 
 Inherited from: [EmbassyOptions](embassyoptions.md).[getPrivateKey](embassyoptions.md#getprivatekey)
 
-Defined in: [src/types.ts:205](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L205)
+Defined in: [src/types.ts:205](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L205)
 
 ___
 
@@ -142,7 +142,7 @@ verified.
 
 Inherited from: [EmbassyOptions](embassyoptions.md).[getPublicKey](embassyoptions.md#getpublickey)
 
-Defined in: [src/types.ts:223](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L223)
+Defined in: [src/types.ts:223](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L223)
 
 ___
 
@@ -154,7 +154,7 @@ The issuer string with which to sign and verify tokens by default.
 
 Inherited from: [EmbassyOptions](embassyoptions.md).[issuer](embassyoptions.md#issuer)
 
-Defined in: [src/types.ts:124](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L124)
+Defined in: [src/types.ts:124](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L124)
 
 ___
 
@@ -172,7 +172,7 @@ object remain unmodified, clone it before passing it in.
 
 Inherited from: [EmbassyOptions](embassyoptions.md).[keys](embassyoptions.md#keys)
 
-Defined in: [src/types.ts:171](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L171)
+Defined in: [src/types.ts:171](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L171)
 
 ___
 
@@ -188,7 +188,7 @@ before giving up and throwing an Error. Must return, or resolve to, a new
 
 Inherited from: [EmbassyOptions](embassyoptions.md).[refreshScopes](embassyoptions.md#refreshscopes)
 
-Defined in: [src/types.ts:179](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L179)
+Defined in: [src/types.ts:179](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L179)
 
 ___
 
@@ -205,7 +205,7 @@ thrown rather than refreshing the scopes.
 
 Inherited from: [EmbassyOptions](embassyoptions.md).[refreshScopesAfterMs](embassyoptions.md#refreshscopesafterms)
 
-Defined in: [src/types.ts:188](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L188)
+Defined in: [src/types.ts:188](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L188)
 
 ___
 
@@ -215,4 +215,4 @@ ___
 
 A token string to be decoded and parsed to initialize this Token
 
-Defined in: [src/types.ts:230](https://github.com/TomFrost/Embassy/blob/af56526/src/types.ts#L230)
+Defined in: [src/types.ts:230](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L230)

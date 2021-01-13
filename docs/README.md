@@ -19,6 +19,7 @@ embassy / [Exports](modules.md)
     <a href="https://travis-ci.org/TomFrost/Embassy"><img src="https://img.shields.io/travis/tomfrost/embassy/master?style=flat-square" alt="build status" height="20"></a>
     <a href="https://www.npmjs.com/package/embassy"><img alt="download count" src="https://img.shields.io/npm/dm/embassy?style=flat-square"></a>
     <a href="https://codeclimate.com/github/TomFrost/Embassy"><img alt="Code Climate coverage" src="https://img.shields.io/codeclimate/coverage/TomFrost/Embassy?style=flat-square"></a>
+    <a href="https://codeclimate.com/github/TomFrost/Embassy"><img alt="Code Climate maintainability" src="https://img.shields.io/codeclimate/maintainability/TomFrost/Embassy?style=flat-square"></a>
     <a href="https://github.com/TomFrost/Embassy/blob/master/LICENSE.txt"><img alt="License" src="https://img.shields.io/github/license/tomfrost/embassy?style=flat-square"></a>
   </p>
 </p>

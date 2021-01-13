@@ -46,7 +46,7 @@ Name | Type |
 
 **Returns:** [*TokenParseError*](tokenparseerror.md)
 
-Defined in: [src/errors/TokenParseError.ts:13](https://github.com/TomFrost/Embassy/blob/af56526/src/errors/TokenParseError.ts#L13)
+Defined in: [src/errors/TokenParseError.ts:13](https://github.com/TomFrost/Embassy/blob/46b38ed/src/errors/TokenParseError.ts#L13)
 
 ## Properties
 
@@ -98,7 +98,7 @@ ___
 
 • **status**: *number*= 401
 
-Defined in: [src/errors/TokenParseError.ts:13](https://github.com/TomFrost/Embassy/blob/af56526/src/errors/TokenParseError.ts#L13)
+Defined in: [src/errors/TokenParseError.ts:13](https://github.com/TomFrost/Embassy/blob/46b38ed/src/errors/TokenParseError.ts#L13)
 
 ## Methods
 
