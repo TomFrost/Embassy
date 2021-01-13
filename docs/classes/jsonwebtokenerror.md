@@ -10,6 +10,8 @@
 
   ↳↳ [*TokenExpiredError*](tokenexpirederror.md)
 
+  ↳↳ [*NotBeforeError*](notbeforeerror.md)
+
 ## Table of contents
 
 ### Constructors

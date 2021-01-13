@@ -24,7 +24,7 @@
 
 • **alg**: *string*
 
-Defined in: [src/types.ts:110](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L110)
+Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L120)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • `Optional` **kid**: *string*
 
-Defined in: [src/types.ts:112](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L112)
+Defined in: [src/types.ts:122](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L122)
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 • **typ**: *JWT*
 
-Defined in: [src/types.ts:111](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L111)
+Defined in: [src/types.ts:121](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L121)

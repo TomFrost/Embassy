@@ -16,5 +16,12 @@ describe('index', () => {
     expect(barrel.KeyNotFoundError).toBeDefined()
     expect(barrel.ScopeNotFoundError).toBeDefined()
     expect(barrel.TokenParseError).toBeDefined()
+    expect(barrel.JsonWebTokenError).toBeDefined()
+    expect(barrel.NotBeforeError).toBeDefined()
+    expect(barrel.TokenExpiredError).toBeDefined()
+  })
+  it('exports algorithm lists', () => {
+    expect(barrel.asymmetricAlgorithms).toBeDefined()
+    expect(barrel.symmetricAlgorithms).toBeDefined()
   })
 })

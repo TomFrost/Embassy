@@ -314,12 +314,12 @@ export class Token {
    *
    * @param opts - Options to customize how the token is verified
    * @returns the token's claims when successfully verified.
-   * @throws {@link jwt.TokenExpiredError}
+   * @throws {@link TokenExpiredError}
    * Thrown when a token has passed the date in its `exp` claim
-   * @throws {@link jwt.JsonWebTokenError}
+   * @throws {@link JsonWebTokenError}
    * Thrown for most verification issues, such as a missing or invalid
    * signature, or mismatched audience or issuer strings
-   * @throws {@link jwt.NotBeforeError}
+   * @throws {@link NotBeforeError}
    * Thrown when the date in the `nbf` claim is in the future
    */
   async verify(opts: TokenVerificationOptions = {}): Promise<Claims> {
@@ -471,7 +471,7 @@ export class Token {
    * bit; `false` to return it in the currently stored size
    * @returns The components of the given scope
    */
-  async getScopeComponents(
+  private async getScopeComponents(
     domain: string,
     scope: string,
     resize = false
@@ -501,7 +501,7 @@ export class Token {
    * Thrown if the given scope does not exist in the domainScopes object and
    * did not appear when refreshing the domainScopes.
    */
-  async getScopeIndex(
+  private async getScopeIndex(
     domain: string,
     scope: string,
     noRetry = false

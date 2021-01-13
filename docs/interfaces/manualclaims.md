@@ -27,7 +27,7 @@
 
 • `Optional` **aud**: *string*
 
-Defined in: [src/types.ts:97](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L97)
+Defined in: [src/types.ts:107](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L107)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • `Optional` **iss**: *string*
 
-Defined in: [src/types.ts:96](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L96)
+Defined in: [src/types.ts:106](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L106)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 • `Optional` **scope**: *string*
 
-Defined in: [src/types.ts:98](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L98)
+Defined in: [src/types.ts:108](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L108)
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 • `Optional` **sub**: *string*
 
-Defined in: [src/types.ts:95](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L95)
+Defined in: [src/types.ts:105](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L105)

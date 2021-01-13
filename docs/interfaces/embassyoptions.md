@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-* [*ExpiringClaimsOptions*](expiringclaimsoptions.md)
+* *ExpiringClaimsOptions*
 
   ↳ **EmbassyOptions**
 
@@ -32,15 +32,13 @@
 
 The audience string with which to sign and verify tokens by default.
 
-Inherited from: [ExpiringClaimsOptions](expiringclaimsoptions.md).[audience](expiringclaimsoptions.md#audience)
-
-Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L120)
+Defined in: [src/types.ts:130](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L130)
 
 ___
 
 ### domainScopes
 
-• `Optional` **domainScopes**: [*DomainScopeMap*](../modules.md#domainscopemap)
+• `Optional` **domainScopes**: [*DomainScopeMap*](domainscopemap.md)
 
 A mapping of domain to maps of scopes to their index under that name. For
 example, if the "users" domain has "editSelf" and "editAll" scopes, the
@@ -64,7 +62,7 @@ and valid tokens refer to their scopes by index number. This format is used
 so that scopes that become inapplicable after time can be deleted without
 shifting the indexes of scopes that come after them.
 
-Defined in: [src/types.ts:161](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L161)
+Defined in: [src/types.ts:171](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L171)
 
 ___
 
@@ -77,9 +75,7 @@ default.
 
 **`defaultvalue`** 3600
 
-Inherited from: [ExpiringClaimsOptions](expiringclaimsoptions.md).[expiresInSecs](expiringclaimsoptions.md#expiresinsecs)
-
-Defined in: [src/types.ts:134](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L134)
+Defined in: [src/types.ts:144](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L144)
 
 ___
 
@@ -103,7 +99,7 @@ property with either the PEM-formatted asymmetric key or shared secret.
 **`returns`** A private key definition for the supplied `kid`, or a promise that
 resolves to one.
 
-Defined in: [src/types.ts:205](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L205)
+Defined in: [src/types.ts:215](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L215)
 
 ___
 
@@ -126,7 +122,7 @@ verified.
 
 **`returns`** The PEM-encoded public key associated with the supplied `kid`.
 
-Defined in: [src/types.ts:223](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L223)
+Defined in: [src/types.ts:233](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L233)
 
 ___
 
@@ -136,9 +132,7 @@ ___
 
 The issuer string with which to sign and verify tokens by default.
 
-Inherited from: [ExpiringClaimsOptions](expiringclaimsoptions.md).[issuer](expiringclaimsoptions.md#issuer)
-
-Defined in: [src/types.ts:124](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L124)
+Defined in: [src/types.ts:134](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L134)
 
 ___
 
@@ -154,13 +148,13 @@ to find external keys are made.
 future token signing and verification. If it's important that the original
 object remain unmodified, clone it before passing it in.
 
-Defined in: [src/types.ts:171](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L171)
+Defined in: [src/types.ts:181](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L181)
 
 ___
 
 ### refreshScopes
 
-• `Optional` **refreshScopes**: () => [*DomainScopeMap*](../modules.md#domainscopemap) \| *Promise*<[*DomainScopeMap*](../modules.md#domainscopemap)\>
+• `Optional` **refreshScopes**: () => [*DomainScopeMap*](domainscopemap.md) \| *Promise*<[*DomainScopeMap*](domainscopemap.md)\>
 
 A function to update (or retrieve for the first time) the domainScopes map.
 When a scope is requested that does not exist in the currently known map,
@@ -168,7 +162,7 @@ this function will be called to update the map and look for the scope
 before giving up and throwing an Error. Must return, or resolve to, a new
 `DomainScopeMap`.
 
-Defined in: [src/types.ts:179](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L179)
+Defined in: [src/types.ts:189](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L189)
 
 ___
 
@@ -183,4 +177,4 @@ thrown rather than refreshing the scopes.
 
 **`defaultvalue`** 1000
 
-Defined in: [src/types.ts:188](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L188)
+Defined in: [src/types.ts:198](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L198)

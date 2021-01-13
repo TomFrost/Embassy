@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-* [*CommonClaimsOptions*](commonclaimsoptions.md)
+* *CommonClaimsOptions*
 
   ↳ **TokenVerificationOptions**
 
@@ -35,7 +35,7 @@ algorithms if omitted.
 ["HS256", "HS384"]
 ```
 
-Defined in: [src/types.ts:259](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L259)
+Defined in: [src/types.ts:269](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L269)
 
 ___
 
@@ -45,9 +45,7 @@ ___
 
 The audience string with which to sign and verify tokens by default.
 
-Inherited from: [CommonClaimsOptions](commonclaimsoptions.md).[audience](commonclaimsoptions.md#audience)
-
-Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L120)
+Defined in: [src/types.ts:130](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L130)
 
 ___
 
@@ -60,7 +58,7 @@ verifying the token.
 
 **`defaultvalue`** 5
 
-Defined in: [src/types.ts:276](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L276)
+Defined in: [src/types.ts:286](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L286)
 
 ___
 
@@ -71,7 +69,7 @@ ___
 `true` to allow expired tokens to pass verification checks, `false`
 otherwise
 
-Defined in: [src/types.ts:264](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L264)
+Defined in: [src/types.ts:274](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L274)
 
 ___
 
@@ -81,9 +79,7 @@ ___
 
 The issuer string with which to sign and verify tokens by default.
 
-Inherited from: [CommonClaimsOptions](commonclaimsoptions.md).[issuer](commonclaimsoptions.md#issuer)
-
-Defined in: [src/types.ts:124](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L124)
+Defined in: [src/types.ts:134](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L134)
 
 ___
 
@@ -96,7 +92,7 @@ look in the `keys` property passed to the constructor, or execute
 `getPrivateKey` (for symmetric algorithms) or `getPublicKey`
 (for asymmetric) if it's not found in `keys`.
 
-Defined in: [src/types.ts:288](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L288)
+Defined in: [src/types.ts:298](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L298)
 
 ___
 
@@ -107,7 +103,7 @@ ___
 If specified, will fail verification if the token is older than the
 specified number of seconds
 
-Defined in: [src/types.ts:269](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L269)
+Defined in: [src/types.ts:279](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L279)
 
 ___
 
@@ -118,4 +114,4 @@ ___
 A nonce to be verified against the `nonce` claim. Useful for Open ID's ID
 tokens.
 
-Defined in: [src/types.ts:281](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L281)
+Defined in: [src/types.ts:291](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L291)

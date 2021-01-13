@@ -3,8 +3,15 @@
  * Copyright (c) 2017-2021 Tom Shawver
  */
 
-export { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken'
+export {
+  JsonWebTokenError,
+  NotBeforeError,
+  TokenExpiredError
+} from 'jsonwebtoken'
 
+/**
+ * An array of all supported asymmetric signing algorithms
+ */
 export const asymmetricAlgorithms: Readonly<string[]> = [
   'RS256',
   'RS384',
@@ -17,6 +24,9 @@ export const asymmetricAlgorithms: Readonly<string[]> = [
   'ES512'
 ]
 
+/**
+ * An array of all supported symmetric signing algorithms
+ */
 export const symmetricAlgorithms: Readonly<string[]> = [
   'HS256',
   'HS384',
@@ -27,11 +37,11 @@ export type Serializable = string | number | boolean | null
 
 export type ClaimValue = Serializable | Record<string, Serializable>
 
-export type DomainScopes = {
+export interface DomainScopes {
   [domain: string]: string[]
 }
 
-export type DomainScopeMap = {
+export interface DomainScopeMap {
   [domain: string]: {
     [scope: string]: number
   }

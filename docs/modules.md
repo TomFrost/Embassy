@@ -9,6 +9,7 @@
 - [Embassy](classes/embassy.md)
 - [JsonWebTokenError](classes/jsonwebtokenerror.md)
 - [KeyNotFoundError](classes/keynotfounderror.md)
+- [NotBeforeError](classes/notbeforeerror.md)
 - [ScopeNotFoundError](classes/scopenotfounderror.md)
 - [Token](classes/token.md)
 - [TokenExpiredError](classes/tokenexpirederror.md)
@@ -17,12 +18,11 @@
 ### Interfaces
 
 - [Claims](interfaces/claims.md)
-- [CommonClaimsOptions](interfaces/commonclaimsoptions.md)
+- [DomainScopeMap](interfaces/domainscopemap.md)
+- [DomainScopes](interfaces/domainscopes.md)
 - [EmbassyOptions](interfaces/embassyoptions.md)
-- [ExpiringClaimsOptions](interfaces/expiringclaimsoptions.md)
 - [JWTHeader](interfaces/jwtheader.md)
 - [ManualClaims](interfaces/manualclaims.md)
-- [ScopeComponents](interfaces/scopecomponents.md)
 - [TokenOptions](interfaces/tokenoptions.md)
 - [TokenSigningOptions](interfaces/tokensigningoptions.md)
 - [TokenVerificationOptions](interfaces/tokenverificationoptions.md)
@@ -31,12 +31,8 @@
 
 - [AsymmetricAlgorithm](modules.md#asymmetricalgorithm)
 - [ClaimValue](modules.md#claimvalue)
-- [DomainKey](modules.md#domainkey)
-- [DomainScopeMap](modules.md#domainscopemap)
-- [DomainScopes](modules.md#domainscopes)
 - [KeyDefinition](modules.md#keydefinition)
 - [PrivateKeyDefinition](modules.md#privatekeydefinition)
-- [ScopeLoopFunction](modules.md#scopeloopfunction)
 - [Serializable](modules.md#serializable)
 - [SigningAlgorithm](modules.md#signingalgorithm)
 - [SymmetricAlgorithm](modules.md#symmetricalgorithm)
@@ -52,7 +48,7 @@
 
 Ƭ **AsymmetricAlgorithm**: *typeof* [*asymmetricAlgorithms*](modules.md#asymmetricalgorithms)[*number*]
 
-Defined in: [src/types.ts:58](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L58)
+Defined in: [src/types.ts:68](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L68)
 
 ___
 
@@ -60,38 +56,7 @@ ___
 
 Ƭ **ClaimValue**: [*Serializable*](modules.md#serializable) \| *Record*<*string*, [*Serializable*](modules.md#serializable)\>
 
-Defined in: [src/types.ts:28](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L28)
-
-___
-
-### DomainKey
-
-Ƭ **DomainKey**: { `domain`: *string* ; `key`: *string*  }
-
-#### Type declaration:
-
-Name | Type |
------- | ------ |
-`domain` | *string* |
-`key` | *string* |
-
-Defined in: [src/types.ts:40](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L40)
-
-___
-
-### DomainScopeMap
-
-Ƭ **DomainScopeMap**: { [domain: string]: { [scope: string]: *number*;  };  }
-
-Defined in: [src/types.ts:34](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L34)
-
-___
-
-### DomainScopes
-
-Ƭ **DomainScopes**: { [domain: string]: *string*[];  }
-
-Defined in: [src/types.ts:30](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L30)
+Defined in: [src/types.ts:38](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L38)
 
 ___
 
@@ -99,7 +64,7 @@ ___
 
 Ƭ **KeyDefinition**: { `algorithm`: [*SigningAlgorithm*](modules.md#signingalgorithm) ; `privateKey`: *string* ; `publicKey?`: *string*  } \| { `algorithm`: [*AsymmetricAlgorithm*](modules.md#asymmetricalgorithm) ; `privateKey?`: *string* ; `publicKey`: *string*  }
 
-Defined in: [src/types.ts:69](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L69)
+Defined in: [src/types.ts:79](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L79)
 
 ___
 
@@ -114,23 +79,7 @@ Name | Type |
 `algorithm` | [*SigningAlgorithm*](modules.md#signingalgorithm) |
 `privateKey` | *string* |
 
-Defined in: [src/types.ts:64](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L64)
-
-___
-
-### ScopeLoopFunction
-
-Ƭ **ScopeLoopFunction**: (`domain`: *string*, `scope`: *string*, `breakFn`: () => *void*) => *void* \| *Promise*<*void*\>
-
-A function to be called iteratively for multiple domain/scope pairs.
-
-**`param`** The domain of a scope
-
-**`param`** The scope string
-
-**`param`** A function to be called to prevent the loop from continuing
-
-Defined in: [src/types.ts:88](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L88)
+Defined in: [src/types.ts:74](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L74)
 
 ___
 
@@ -138,7 +87,7 @@ ___
 
 Ƭ **Serializable**: *string* \| *number* \| *boolean* \| *null*
 
-Defined in: [src/types.ts:26](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L26)
+Defined in: [src/types.ts:36](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L36)
 
 ___
 
@@ -146,7 +95,7 @@ ___
 
 Ƭ **SigningAlgorithm**: [*SymmetricAlgorithm*](modules.md#symmetricalgorithm) \| [*AsymmetricAlgorithm*](modules.md#asymmetricalgorithm)
 
-Defined in: [src/types.ts:62](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L62)
+Defined in: [src/types.ts:72](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L72)
 
 ___
 
@@ -154,7 +103,7 @@ ___
 
 Ƭ **SymmetricAlgorithm**: *typeof* [*symmetricAlgorithms*](modules.md#symmetricalgorithms)[*number*]
 
-Defined in: [src/types.ts:60](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L60)
+Defined in: [src/types.ts:70](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L70)
 
 ## Variables
 
@@ -162,7 +111,9 @@ Defined in: [src/types.ts:60](https://github.com/TomFrost/Embassy/blob/46b38ed/s
 
 • `Const` **asymmetricAlgorithms**: *Readonly*<*string*[]\>
 
-Defined in: [src/types.ts:8](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L8)
+An array of all supported asymmetric signing algorithms
+
+Defined in: [src/types.ts:15](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L15)
 
 ___
 
@@ -170,4 +121,6 @@ ___
 
 • `Const` **symmetricAlgorithms**: *Readonly*<*string*[]\>
 
-Defined in: [src/types.ts:20](https://github.com/TomFrost/Embassy/blob/46b38ed/src/types.ts#L20)
+An array of all supported symmetric signing algorithms
+
+Defined in: [src/types.ts:30](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/types.ts#L30)

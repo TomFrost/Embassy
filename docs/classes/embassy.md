@@ -29,11 +29,11 @@ Creates a new Embassy instance.
 
 Name | Type | Default value | Description |
 ------ | ------ | ------ | ------ |
-`opts` | [*EmbassyOptions*](../interfaces/embassyoptions.md) | ... | Options with which to initialize every new {@link Token#"constructor"}.    |
+`opts` | [*EmbassyOptions*](../interfaces/embassyoptions.md) | ... | Options with which to initialize every new [Token](token.md).    |
 
 **Returns:** [*Embassy*](embassy.md)
 
-Defined in: [src/Embassy.ts:10](https://github.com/TomFrost/Embassy/blob/46b38ed/src/Embassy.ts#L10)
+Defined in: [src/Embassy.ts:10](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/Embassy.ts#L10)
 
 ## Methods
 
@@ -53,7 +53,7 @@ Name | Type | Description |
 
 The newly created Token
 
-Defined in: [src/Embassy.ts:28](https://github.com/TomFrost/Embassy/blob/46b38ed/src/Embassy.ts#L28)
+Defined in: [src/Embassy.ts:27](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/Embassy.ts#L27)
 
 ___
 
@@ -74,4 +74,4 @@ Name | Type | Description |
 A token object, initiated with the data contained in the token
 string
 
-Defined in: [src/Embassy.ts:39](https://github.com/TomFrost/Embassy/blob/46b38ed/src/Embassy.ts#L39)
+Defined in: [src/Embassy.ts:38](https://github.com/TomFrost/Embassy/blob/3a9cf3a/src/Embassy.ts#L38)

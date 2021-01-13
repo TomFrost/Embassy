@@ -12,8 +12,7 @@ export class Embassy {
   /**
    * Creates a new Embassy instance.
    *
-   * @param opts - Options with which to initialize every new
-   * {@link Token#"constructor"}.
+   * @param opts - Options with which to initialize every new {@link Token}.
    */
   constructor(opts: EmbassyOptions = {}) {
     this.tokenOptions = { domainScopes: {}, keys: {}, ...opts }
