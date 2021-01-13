@@ -506,7 +506,7 @@ export class Token {
     scope: string,
     noRetry = false
   ): Promise<number> {
-    const map = this.opts.domainScopes[domain]
+    const map = this.opts.domainScopes[domain] || {}
     if (!(scope in map)) {
       const updateAfter = this.scopesLastUpdate + this.opts.refreshScopesAfterMs
       if (noRetry || !this.opts.refreshScopes || Date.now() < updateAfter) {
