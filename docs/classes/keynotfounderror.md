@@ -47,7 +47,7 @@ Name | Type |
 
 **Returns:** [*KeyNotFoundError*](keynotfounderror.md)
 
-Defined in: [src/errors/KeyNotFoundError.ts:14](https://github.com/TomFrost/Embassy/blob/8146991/src/errors/KeyNotFoundError.ts#L14)
+Defined in: [src/errors/KeyNotFoundError.ts:14](https://github.com/TomFrost/Embassy/blob/eff2681/src/errors/KeyNotFoundError.ts#L14)
 
 ## Properties
 
@@ -99,7 +99,7 @@ ___
 
 • **status**: *number*= 401
 
-Defined in: [src/errors/KeyNotFoundError.ts:14](https://github.com/TomFrost/Embassy/blob/8146991/src/errors/KeyNotFoundError.ts#L14)
+Defined in: [src/errors/KeyNotFoundError.ts:14](https://github.com/TomFrost/Embassy/blob/eff2681/src/errors/KeyNotFoundError.ts#L14)
 
 ## Methods
 

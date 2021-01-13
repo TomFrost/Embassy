@@ -34,7 +34,7 @@ The audience string with which to sign and verify tokens by default.
 
 Inherited from: [ExpiringClaimsOptions](expiringclaimsoptions.md).[audience](expiringclaimsoptions.md#audience)
 
-Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L120)
+Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L120)
 
 ___
 
@@ -64,7 +64,7 @@ and valid tokens refer to their scopes by index number. This format is used
 so that scopes that become inapplicable after time can be deleted without
 shifting the indexes of scopes that come after them.
 
-Defined in: [src/types.ts:161](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L161)
+Defined in: [src/types.ts:161](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L161)
 
 ___
 
@@ -79,7 +79,7 @@ default.
 
 Inherited from: [ExpiringClaimsOptions](expiringclaimsoptions.md).[expiresInSecs](expiringclaimsoptions.md#expiresinsecs)
 
-Defined in: [src/types.ts:134](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L134)
+Defined in: [src/types.ts:134](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L134)
 
 ___
 
@@ -103,7 +103,7 @@ property with either the PEM-formatted asymmetric key or shared secret.
 **`returns`** A private key definition for the supplied `kid`, or a promise that
 resolves to one.
 
-Defined in: [src/types.ts:205](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L205)
+Defined in: [src/types.ts:205](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L205)
 
 ___
 
@@ -126,7 +126,7 @@ verified.
 
 **`returns`** The PEM-encoded public key associated with the supplied `kid`.
 
-Defined in: [src/types.ts:223](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L223)
+Defined in: [src/types.ts:223](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L223)
 
 ___
 
@@ -138,7 +138,7 @@ The issuer string with which to sign and verify tokens by default.
 
 Inherited from: [ExpiringClaimsOptions](expiringclaimsoptions.md).[issuer](expiringclaimsoptions.md#issuer)
 
-Defined in: [src/types.ts:124](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L124)
+Defined in: [src/types.ts:124](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L124)
 
 ___
 
@@ -154,7 +154,7 @@ to find external keys are made.
 future token signing and verification. If it's important that the original
 object remain unmodified, clone it before passing it in.
 
-Defined in: [src/types.ts:171](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L171)
+Defined in: [src/types.ts:171](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L171)
 
 ___
 
@@ -168,7 +168,7 @@ this function will be called to update the map and look for the scope
 before giving up and throwing an Error. Must return, or resolve to, a new
 `DomainScopeMap`.
 
-Defined in: [src/types.ts:179](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L179)
+Defined in: [src/types.ts:179](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L179)
 
 ___
 
@@ -183,4 +183,4 @@ thrown rather than refreshing the scopes.
 
 **`defaultvalue`** 1000
 
-Defined in: [src/types.ts:188](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L188)
+Defined in: [src/types.ts:188](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L188)

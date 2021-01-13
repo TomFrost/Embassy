@@ -30,7 +30,7 @@ The audience string with which to sign and verify tokens by default.
 
 Inherited from: [CommonClaimsOptions](commonclaimsoptions.md).[audience](commonclaimsoptions.md#audience)
 
-Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L120)
+Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L120)
 
 ___
 
@@ -43,7 +43,7 @@ default.
 
 **`defaultvalue`** 3600
 
-Defined in: [src/types.ts:134](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L134)
+Defined in: [src/types.ts:134](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L134)
 
 ___
 
@@ -55,4 +55,4 @@ The issuer string with which to sign and verify tokens by default.
 
 Inherited from: [CommonClaimsOptions](commonclaimsoptions.md).[issuer](commonclaimsoptions.md#issuer)
 
-Defined in: [src/types.ts:124](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L124)
+Defined in: [src/types.ts:124](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L124)

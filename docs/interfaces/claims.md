@@ -29,7 +29,7 @@
 
 Inherited from: [ManualClaims](manualclaims.md).[aud](manualclaims.md#aud)
 
-Defined in: [src/types.ts:97](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L97)
+Defined in: [src/types.ts:97](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L97)
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • `Optional` **exp**: *number*
 
-Defined in: [src/types.ts:104](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L104)
+Defined in: [src/types.ts:104](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L104)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 • `Optional` **iat**: *number*
 
-Defined in: [src/types.ts:103](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L103)
+Defined in: [src/types.ts:103](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L103)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 Inherited from: [ManualClaims](manualclaims.md).[iss](manualclaims.md#iss)
 
-Defined in: [src/types.ts:96](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L96)
+Defined in: [src/types.ts:96](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L96)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 • `Optional` **jti**: *string*
 
-Defined in: [src/types.ts:106](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L106)
+Defined in: [src/types.ts:106](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L106)
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 • `Optional` **nbf**: *number*
 
-Defined in: [src/types.ts:105](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L105)
+Defined in: [src/types.ts:105](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L105)
 
 ___
 
@@ -81,7 +81,7 @@ ___
 
 Inherited from: [ManualClaims](manualclaims.md).[scope](manualclaims.md#scope)
 
-Defined in: [src/types.ts:98](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L98)
+Defined in: [src/types.ts:98](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L98)
 
 ___
 
@@ -91,4 +91,4 @@ ___
 
 Inherited from: [ManualClaims](manualclaims.md).[sub](manualclaims.md#sub)
 
-Defined in: [src/types.ts:95](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L95)
+Defined in: [src/types.ts:95](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L95)

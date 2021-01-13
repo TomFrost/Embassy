@@ -78,7 +78,7 @@ const tokenString = await token.sign('myKey')
 // Token expires in an hour by default
 ```
 
-**[embassy.createToken docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/embassy.md) • [token.sign docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md)**
+**[embassy.createToken docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/embassy.md#createtoken) • [token.sign docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md#sign)**
 
 ### Verify access tokens
 
@@ -88,7 +88,7 @@ const claims = await token.verify() // Throws if invalid, expired, etc
 console.log(`New request from ${claims.email}`)
 ```
 
-**[embassy.parseToken docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/embassy.md) • [token.verify docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md)**
+**[embassy.parseToken docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/embassy.md#parsetoken) • [token.verify docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md#verify)**
 
 ### Create and sign refresh tokens
 
@@ -103,7 +103,7 @@ const tokenString = await token.sign('myKey', {
 })
 ```
 
-**[embassy.createToken docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/embassy.md)** • **[token.sign docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md)**
+**[embassy.createToken docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/embassy.md#createtoken) • [token.sign docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md#sign)**
 
 ### Verify refresh tokens
 
@@ -115,7 +115,7 @@ const claims = await token.verify({
 console.log(`Checking if ${claims.email} is still in good status...`)
 ```
 
-**[embassy.parseToken docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/embassy.md) • [token.verify docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md)**
+**[embassy.parseToken docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/embassy.md#parsetoken) • [token.verify docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md#verify)**
 
 ### Grant scopes to tokens
 
@@ -135,7 +135,7 @@ await token.grantScopes({
 // single token can hold hundreds of scopes and still stay small!
 ```
 
-**[token.grantScope docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md) • [token.grantScopes docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md)**
+**[token.grantScope docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md#grantscope) • [token.grantScopes docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md#grantscopes)**
 
 _Tip: Change "grant" to "revoke" and it does exactly what you'd expect!_
 
@@ -156,7 +156,7 @@ await token.hasScopes({
 })
 ```
 
-**[token.hasScope docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md) • [token.hasScopes docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md)**
+**[token.hasScope docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md#hasscope) • [token.hasScopes docs](https://github.com/TomFrost/Embassy/blob/master/docs/classes/token.md#hasscopes)**
 
 ### Read and write claims
 

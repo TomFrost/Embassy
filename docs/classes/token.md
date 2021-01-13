@@ -51,7 +51,7 @@ Name | Type | Default value | Description |
 
 **Returns:** [*Token*](token.md)
 
-Defined in: [src/Token.ts:37](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L37)
+Defined in: [src/Token.ts:37](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L37)
 
 ## Properties
 
@@ -59,7 +59,7 @@ Defined in: [src/Token.ts:37](https://github.com/TomFrost/Embassy/blob/8146991/s
 
 • **claims**: [*Claims*](../interfaces/claims.md)
 
-Defined in: [src/Token.ts:36](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L36)
+Defined in: [src/Token.ts:36](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L36)
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 • **header**: [*JWTHeader*](../interfaces/jwtheader.md)
 
-Defined in: [src/Token.ts:37](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L37)
+Defined in: [src/Token.ts:37](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L37)
 
 ## Methods
 
@@ -94,7 +94,7 @@ Name | Type | Description |
 
 The value of the requested option, or undefined
 
-Defined in: [src/Token.ts:70](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L70)
+Defined in: [src/Token.ts:70](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L70)
 
 ___
 
@@ -117,7 +117,7 @@ Name | Type | Default value | Description |
 
 The components of the given scope
 
-Defined in: [src/Token.ts:474](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L474)
+Defined in: [src/Token.ts:474](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L474)
 
 ___
 
@@ -145,7 +145,7 @@ Name | Type | Default value | Description |
 
 the index of the target permission
 
-Defined in: [src/Token.ts:504](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L504)
+Defined in: [src/Token.ts:504](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L504)
 
 ___
 
@@ -164,7 +164,7 @@ Name | Type | Description |
 
 **Returns:** *Promise*<*void*\>
 
-Defined in: [src/Token.ts:83](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L83)
+Defined in: [src/Token.ts:83](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L83)
 
 ▸ **grantScope**(`combined`: *string*): *Promise*<*void*\>
 
@@ -181,7 +181,7 @@ Name | Type | Description |
 
 **Returns:** *Promise*<*void*\>
 
-Defined in: [src/Token.ts:94](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L94)
+Defined in: [src/Token.ts:94](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L94)
 
 ___
 
@@ -199,7 +199,7 @@ Name | Type | Description |
 
 **Returns:** *Promise*<*void*\>
 
-Defined in: [src/Token.ts:111](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L111)
+Defined in: [src/Token.ts:111](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L111)
 
 ▸ **grantScopes**(`combined`: *string*[]): *Promise*<*void*\>
 
@@ -213,7 +213,7 @@ Name | Type | Description |
 
 **Returns:** *Promise*<*void*\>
 
-Defined in: [src/Token.ts:119](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L119)
+Defined in: [src/Token.ts:119](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L119)
 
 ___
 
@@ -234,7 +234,7 @@ Name | Type | Description |
 
 `true` if the scope is included in this Token; `false` otherwise.
 
-Defined in: [src/Token.ts:135](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L135)
+Defined in: [src/Token.ts:135](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L135)
 
 ▸ **hasScope**(`combined`: *string*): *Promise*<*boolean*\>
 
@@ -251,7 +251,7 @@ Name | Type | Description |
 
 **Returns:** *Promise*<*boolean*\>
 
-Defined in: [src/Token.ts:146](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L146)
+Defined in: [src/Token.ts:146](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L146)
 
 ___
 
@@ -272,7 +272,7 @@ Name | Type | Description |
 `true` if every scope of every domain exists on this Token;
 `false` otherwise
 
-Defined in: [src/Token.ts:164](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L164)
+Defined in: [src/Token.ts:164](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L164)
 
 ▸ **hasScopes**(`combined`: *string*[]): *Promise*<*boolean*\>
 
@@ -289,7 +289,7 @@ Name | Type | Description |
 `true` if every scope of every domain exists on this Token;
 `false` otherwise
 
-Defined in: [src/Token.ts:174](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L174)
+Defined in: [src/Token.ts:174](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L174)
 
 ___
 
@@ -309,7 +309,7 @@ Name | Type | Description |
 
 **Returns:** *Promise*<*void*\>
 
-Defined in: [src/Token.ts:199](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L199)
+Defined in: [src/Token.ts:199](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L199)
 
 ▸ **revokeScope**(`combined`: *string*): *Promise*<*void*\>
 
@@ -328,7 +328,7 @@ Name | Type | Description |
 
 **Returns:** *Promise*<*void*\>
 
-Defined in: [src/Token.ts:212](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L212)
+Defined in: [src/Token.ts:212](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L212)
 
 ___
 
@@ -348,7 +348,7 @@ Name | Type | Description |
 
 **Returns:** *Promise*<*void*\>
 
-Defined in: [src/Token.ts:233](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L233)
+Defined in: [src/Token.ts:233](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L233)
 
 ▸ **revokeScopes**(`combined`: *string*[]): *Promise*<*void*\>
 
@@ -364,7 +364,7 @@ Name | Type | Description |
 
 **Returns:** *Promise*<*void*\>
 
-Defined in: [src/Token.ts:243](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L243)
+Defined in: [src/Token.ts:243](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L243)
 
 ___
 
@@ -386,7 +386,7 @@ Name | Type | Description |
 
 **Returns:** *void*
 
-Defined in: [src/Token.ts:261](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L261)
+Defined in: [src/Token.ts:261](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L261)
 
 ___
 
@@ -412,7 +412,7 @@ Name | Type | Default value | Description |
 
 the signed and encoded token string.
 
-Defined in: [src/Token.ts:281](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L281)
+Defined in: [src/Token.ts:281](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L281)
 
 ___
 
@@ -443,4 +443,4 @@ Name | Type | Default value | Description |
 
 the token's claims when successfully verified.
 
-Defined in: [src/Token.ts:325](https://github.com/TomFrost/Embassy/blob/8146991/src/Token.ts#L325)
+Defined in: [src/Token.ts:325](https://github.com/TomFrost/Embassy/blob/eff2681/src/Token.ts#L325)

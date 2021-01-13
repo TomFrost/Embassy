@@ -47,7 +47,7 @@ Name | Type |
 
 **Returns:** [*ScopeNotFoundError*](scopenotfounderror.md)
 
-Defined in: [src/errors/ScopeNotFoundError.ts:14](https://github.com/TomFrost/Embassy/blob/8146991/src/errors/ScopeNotFoundError.ts#L14)
+Defined in: [src/errors/ScopeNotFoundError.ts:14](https://github.com/TomFrost/Embassy/blob/eff2681/src/errors/ScopeNotFoundError.ts#L14)
 
 ## Properties
 
@@ -99,7 +99,7 @@ ___
 
 • **status**: *number*= 403
 
-Defined in: [src/errors/ScopeNotFoundError.ts:14](https://github.com/TomFrost/Embassy/blob/8146991/src/errors/ScopeNotFoundError.ts#L14)
+Defined in: [src/errors/ScopeNotFoundError.ts:14](https://github.com/TomFrost/Embassy/blob/eff2681/src/errors/ScopeNotFoundError.ts#L14)
 
 ## Methods
 

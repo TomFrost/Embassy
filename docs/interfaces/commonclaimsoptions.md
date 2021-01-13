@@ -25,7 +25,7 @@
 
 The audience string with which to sign and verify tokens by default.
 
-Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L120)
+Defined in: [src/types.ts:120](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L120)
 
 ___
 
@@ -35,4 +35,4 @@ ___
 
 The issuer string with which to sign and verify tokens by default.
 
-Defined in: [src/types.ts:124](https://github.com/TomFrost/Embassy/blob/8146991/src/types.ts#L124)
+Defined in: [src/types.ts:124](https://github.com/TomFrost/Embassy/blob/eff2681/src/types.ts#L124)

@@ -33,7 +33,7 @@ Name | Type | Default value | Description |
 
 **Returns:** [*Embassy*](embassy.md)
 
-Defined in: [src/Embassy.ts:10](https://github.com/TomFrost/Embassy/blob/8146991/src/Embassy.ts#L10)
+Defined in: [src/Embassy.ts:10](https://github.com/TomFrost/Embassy/blob/eff2681/src/Embassy.ts#L10)
 
 ## Methods
 
@@ -53,7 +53,7 @@ Name | Type | Description |
 
 The newly created Token
 
-Defined in: [src/Embassy.ts:28](https://github.com/TomFrost/Embassy/blob/8146991/src/Embassy.ts#L28)
+Defined in: [src/Embassy.ts:28](https://github.com/TomFrost/Embassy/blob/eff2681/src/Embassy.ts#L28)
 
 ___
 
@@ -74,4 +74,4 @@ Name | Type | Description |
 A token object, initiated with the data contained in the token
 string
 
-Defined in: [src/Embassy.ts:39](https://github.com/TomFrost/Embassy/blob/8146991/src/Embassy.ts#L39)
+Defined in: [src/Embassy.ts:39](https://github.com/TomFrost/Embassy/blob/eff2681/src/Embassy.ts#L39)
