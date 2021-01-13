@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/TomFrost/Embassy">
-    <img src="http://i.tomfro.st/0lohi3.svg" alt="Embassy Logo" width="400" height="250">
+    <img src="http://i.tomfro.st/uTz1mF.svg" alt="Embassy Logo" width="400" height="250">
   </a>
 
   <h3 align="center">Simple JSON Web Tokens (JWT) with embedded scopes for services</h3>
