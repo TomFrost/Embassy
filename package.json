@@ -1,7 +1,7 @@
 {
   "name": "embassy",
   "version": "2.0.0",
-  "description": "JWT token generator/verifier with built-in permission flags",
+  "description": "Simple JSON Web Tokens (JWT) with embedded scopes for services",
   "main": "dist/index.js",
   "engines": {
     "node": ">=12"
@@ -25,14 +25,18 @@
   ],
   "keywords": [
     "JWT",
+    "jwts",
+    "bearer",
     "token",
+    "tokens",
+    "authentication",
+    "authorization",
     "oauth",
     "oauth2",
     "openid",
     "connect",
-    "permission",
-    "permissions",
-    "flags"
+    "scope",
+    "scopes"
   ],
   "author": "Tom Shawver <tom@frosteddesign.com>",
   "license": "ISC",
