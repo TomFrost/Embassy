@@ -1,6 +1,6 @@
 {
   "name": "embassy",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Simple JSON Web Tokens (JWT) with embedded scopes for services",
   "main": "dist/index.js",
   "engines": {
