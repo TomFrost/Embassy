@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "lib": ["es2017"],
-    "removeComments": true,
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
