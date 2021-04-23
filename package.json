@@ -3,6 +3,7 @@
   "version": "2.0.1",
   "description": "Simple JSON Web Tokens (JWT) with embedded scopes for services",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "engines": {
     "node": ">=12"
   },
@@ -12,7 +13,7 @@
     "docs": "typedoc --excludePrivate src/index.ts",
     "format": "eslint '*/**/*.{js,ts}' --fix; prettier -l --write **/*.{md,json}",
     "lint": "eslint '*/**/*.{js,ts}'; prettier -l **/*.{md,json}",
-    "clean": "rm -rf node_modules coverage",
+    "clean": "rm -rf node_modules coverage dist",
     "test": "npm run lint && jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -20,9 +21,6 @@
     "type": "git",
     "url": "git+https://github.com/TomFrost/embassy.git"
   },
-  "files": [
-    "./dist/*"
-  ],
   "keywords": [
     "JWT",
     "jwts",
