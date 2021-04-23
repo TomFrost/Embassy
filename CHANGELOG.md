@@ -6,14 +6,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Nothing yet!
 
-## [v2.0.1] - 2020-01-14
+## [v2.0.2] - 2021-04-23
+
+### Fixed
+
+- Typescript types are now published with the package
+
+## [v2.0.1] - 2021-01-14
 
 ### Fixed
 
 - Updated build settings to include documentation. Intellisense in editors can now show TSDoc data.
 - Corrected public/private scope issues in Token.js that exposed two private functions to the public and included them in the API documentation.
 
-## [v2.0.0] - 2020-01-13
+## [v2.0.0] - 2021-01-13
 
 ### Changes
 
@@ -72,7 +78,8 @@ This version intentionally skipped due to 2015 publishing error
 
 - Initial release
 
-[development]: https://github.com/TomFrost/Embassy/compare/v2.0.1...HEAD
+[development]: https://github.com/TomFrost/Embassy/compare/v2.0.2...HEAD
+[v2.0.1]: https://github.com/TomFrost/Embassy/compare/v2.0.1...v2.0.2
 [v2.0.1]: https://github.com/TomFrost/Embassy/compare/v2.0.0...v2.0.1
 [v2.0.0]: https://github.com/TomFrost/Embassy/compare/v0.3.2...v2.0.0
 [v0.3.2]: https://github.com/TomFrost/Embassy/compare/v0.3.1...v0.3.2
