@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Nothing yet!
 
+## [v2.0.3] - 2021-04-27
+
+### Fixed
+
+- Typescript build now uses CommonJS module types for higher compatibility
+
 ## [v2.0.2] - 2021-04-23
 
 ### Fixed
@@ -78,8 +84,9 @@ This version intentionally skipped due to 2015 publishing error
 
 - Initial release
 
-[development]: https://github.com/TomFrost/Embassy/compare/v2.0.2...HEAD
-[v2.0.1]: https://github.com/TomFrost/Embassy/compare/v2.0.1...v2.0.2
+[development]: https://github.com/TomFrost/Embassy/compare/v2.0.3...HEAD
+[v2.0.3]: https://github.com/TomFrost/Embassy/compare/v2.0.2...v2.0.3
+[v2.0.2]: https://github.com/TomFrost/Embassy/compare/v2.0.1...v2.0.2
 [v2.0.1]: https://github.com/TomFrost/Embassy/compare/v2.0.0...v2.0.1
 [v2.0.0]: https://github.com/TomFrost/Embassy/compare/v0.3.2...v2.0.0
 [v0.3.2]: https://github.com/TomFrost/Embassy/compare/v0.3.1...v0.3.2
