@@ -5,11 +5,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
-    "target": "es2017",
+    "target": "es2016",
     "outDir": "dist",
     "sourceRoot": "src",
     "esModuleInterop": true,
-    "declaration": true
+    "declaration": true,
+    "module": "CommonJS"
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["node_modules/**/*", ".vscode/**/*"]
