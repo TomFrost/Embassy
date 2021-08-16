@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Nothing yet!
 
+## [v2.0.4] = 2021-08-16
+
+### Fixed
+
+- Upgraded dependencies with security issues
+
 ## [v2.0.3] - 2021-04-27
 
 ### Fixed
@@ -84,7 +90,8 @@ This version intentionally skipped due to 2015 publishing error
 
 - Initial release
 
-[development]: https://github.com/TomFrost/Embassy/compare/v2.0.3...HEAD
+[development]: https://github.com/TomFrost/Embassy/compare/v2.0.4...HEAD
+[v2.0.4]: https://github.com/TomFrost/Embassy/compare/v2.0.3...v2.0.4
 [v2.0.3]: https://github.com/TomFrost/Embassy/compare/v2.0.2...v2.0.3
 [v2.0.2]: https://github.com/TomFrost/Embassy/compare/v2.0.1...v2.0.2
 [v2.0.1]: https://github.com/TomFrost/Embassy/compare/v2.0.0...v2.0.1
