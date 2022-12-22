@@ -44,7 +44,7 @@
   "homepage": "https://github.com/TomFrost/embassy#readme",
   "dependencies": {
     "base64-js": "^1.5.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
